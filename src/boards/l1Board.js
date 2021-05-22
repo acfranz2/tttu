@@ -1,4 +1,5 @@
 import React from 'react'
+import './board.css'
 
 function Cell(props) {
   return (
@@ -9,10 +10,6 @@ function Cell(props) {
 }
 
 class L1Board extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderCell(i) {
     return (
       <Cell
@@ -25,12 +22,12 @@ class L1Board extends React.Component {
   render() {
     return (
       <div>
-	<div>
+	<div className="l1board-row">
 	  {this.renderCell(0)}
 	  {this.renderCell(1)}
 	  {this.renderCell(2)}
 	</div>
-	<div>
+	<div className="l1board-row">
 	  {this.renderCell(3)}
 	  {this.renderCell(4)}
 	  {this.renderCell(5)}

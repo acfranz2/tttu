@@ -1,5 +1,6 @@
 import React from 'react'
 import L1Board from './l1Board'
+import './board.css'
 
 class L2Board extends React.Component {
   renderL1Board(i) {
@@ -13,17 +14,17 @@ class L2Board extends React.Component {
   render() {
     return (
       <div>
-	<div>
+	<div className="l2board-row">
 	  {this.renderL1Board(0)}
 	  {this.renderL1Board(1)}
 	  {this.renderL1Board(2)}
         </div>
-	<div>
+	<div className="l2board-row">
 	  {this.renderL1Board(3)}
 	  {this.renderL1Board(4)}
 	  {this.renderL1Board(5)}
 	</div>
-	<div>
+	<div className="l2board-row">
 	  {this.renderL1Board(6)}
 	  {this.renderL1Board(7)}
 	  {this.renderL1Board(8)}
