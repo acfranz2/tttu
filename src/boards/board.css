@@ -17,14 +17,20 @@
   outline: none;
 }
 
-.l1board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+.l1board {
+  display: grid;
+  grid-template-columns: 34px 34px 34px;
+  grid-template-rows: 34px 34px 34px;
 }
 
-.l2board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+.l2board {
+  display: grid;
+  grid-template-columns: 102px 102px 102px;
+  grid-template-rows: 102px 102px 102px;
+}
+
+.l3board {
+  display: grid;
+  grid-template-columns: 306px 306px 306px;
+  grid-template-columns: 306px 306px 306px;
 }
