@@ -32,7 +32,7 @@ class L1Board extends React.Component {
 	  {this.renderCell(4)}
 	  {this.renderCell(5)}
 	</div>
-	<div>
+	<div className="l1board-row">
 	  {this.renderCell(6)}
 	  {this.renderCell(7)}
 	  {this.renderCell(8)}
