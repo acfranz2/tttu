@@ -2,7 +2,7 @@ import React from 'react'
 
 function Cell(props) {
   return (
-    <button classname="cell" onClick={() => console.log("click")}>
+    <button className="cell" onClick={() => console.log("click")}>
       {props.value}
     </button>
   );
