@@ -3,7 +3,7 @@ import './board.css'
 
 class L1Board extends React.Component {
   renderCell(i) {
-    return i;
+    return null;
   }
 
   render() {

@@ -27,10 +27,12 @@
   display: grid;
   grid-template-columns: 102px 102px 102px;
   grid-template-rows: 102px 102px 102px;
+  grid-gap: 10px;
 }
 
 .l3board {
   display: grid;
-  grid-template-columns: 306px 306px 306px;
-  grid-template-columns: 306px 306px 306px;
+  grid-template-columns: 316px 316px 316px;
+  grid-template-columns: 316px 316px 316px;
+  grid-gap: 15px;
 }
