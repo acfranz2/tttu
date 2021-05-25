@@ -12,12 +12,20 @@ class L2Board extends React.Component {
       pl = Boolean(true);
     }
 
+    let lp1 = -1;
+
+    if (l2 === this.props.lastPlayedl2) {
+      lp1 = this.props.lastPlayedl1;
+    }
+
+
     return (
       <L1Board
         score={this.props.score[l2]}
         onClick={(l1) => this.props.onClick(l1, l2)}
         playable={pl}
         player={this.props.player}
+        lastPlayedl1={lp1}
       />
     );
   }
