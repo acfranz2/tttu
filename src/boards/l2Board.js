@@ -5,13 +5,6 @@ import './board.css'
 class L2Board extends React.Component {
 
   renderL1Board(l2) {
-
-    let pl = Boolean(false);
-
-    if (l2 === this.props.playablel2) {
-      pl = Boolean(true);
-    }
-
     let lp1 = -1;
 
     if (l2 === this.props.lastPlayedl2) {
@@ -23,7 +16,7 @@ class L2Board extends React.Component {
       <L1Board
         score={this.props.score[l2]}
         onClick={(l1) => this.props.onClick(l1, l2)}
-        playable={pl}
+        playable={this.props.playablel2[l2]}
         player={this.props.player}
         lastPlayedl1={lp1}
       />
