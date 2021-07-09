@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Game from './game';
+import L2Game from './l2Game';
 import L1Board from './boards/l1Board'
 import L2Board from './boards/l2Board'
 import L3Board from './boards/l3Board'
