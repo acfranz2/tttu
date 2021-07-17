@@ -22,7 +22,7 @@ class L2Game extends React.Component {
       const newScoreL1 = this.state.scoreL1;
       const newScoreL2 = this.state.scoreL2;
       const newPlayableL1 = Array(9).fill(null);
-      const newWinner = winner;
+      let newWinner = this.state.winner;
 
       newScoreL1[l2][l1] = this.state.player ? "X" : "O";
 
