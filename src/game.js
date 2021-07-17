@@ -36,6 +36,8 @@ class Game extends React.Component {
 
       if(newScoreL3[l2]) {
 	for(let i = 0; i < 9; i++) {
+	  if(newScoreL3[i])
+	    continue;
 	  for(let j = 0; j < 9; j++) {
             if(!newScoreL2[i][j]) {
               newPlayableL2[i][j] = 1;
