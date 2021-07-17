@@ -16,7 +16,9 @@ class L2Board extends React.Component {
       <L1Board
         score={this.props.score[l2]}
         onClick={(l1) => this.props.onClick(l1, l2)}
+        onMouseEnter={(l1) => this.props.onMouseEnter(l1, l2)}
         playable={this.props.playablel2[l2]}
+        nplayable={this.props.nplayable[l2]}
         player={this.props.player}
         lastPlayedl1={lp1}
       />

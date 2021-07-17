@@ -27,10 +27,15 @@ class L1Board extends React.Component {
       }
     }
 
+    if(this.props.nplayable) {
+      cellType = "nplayable";
+    }
+
     return (
       <button
         className={cellType}
-        onClick={() => this.props.onClick(l1)}>{this.props.score[l1]}
+        onClick={() => this.props.onClick(l1)}
+	onMouseEnter={() => this.props.onMouseEnter(l1)}>{this.props.score[l1]}
       </button>
     );
   }

@@ -9,8 +9,8 @@ class Game extends React.Component {
       scoreL2: Array(9).fill(null).map(() => Array(9).fill(null)),
       scoreL3: Array(9).fill(null),
       player: true,
-      playablel3: Array(9).fill(1),
       playablel2: Array(9).fill(null).map(() => Array(9).fill(1)),
+      nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
       lastPlayedl3: -1,
       lastPlayedl2: -1,
       lastPlayedl1: -1
@@ -21,7 +21,7 @@ class Game extends React.Component {
     //console.log(this.state.playablel2 + ', ' + l1);
     //console.log(this.state.playablel3 + ', ' + l2);
 
-    if (this.state.playablel3[l3] && this.state.playablel2[l3][l2] && !this.state.scoreL1[l3][l2][l1]) {
+    if (this.state.playablel2[l3][l2] && !this.state.scoreL1[l3][l2][l1]) {
       const newScoreL1 = this.state.scoreL1;
       const newScoreL2 = this.state.scoreL2;
       const newScoreL3 = this.state.scoreL3;
@@ -63,6 +63,7 @@ class Game extends React.Component {
         scoreL2: newScoreL2,
         scoreL3: newScoreL3,
         player: !this.state.player,
+	nplayable: this.state.nplayable,
         playablel2: newPlayableL2,
         lastPlayedl3: l3,
         lastPlayedl2: l2,
@@ -71,11 +72,54 @@ class Game extends React.Component {
     }
   }
 
+  handleHover(l1, l2, l3) {
+    if (this.state.playablel2[l3][l2] && !this.state.scoreL1[l3][l2][l1]) {
+      const newNPlayable = Array(9).fill(null).map(() => Array(9).fill(null));
+            
+      if(this.state.scoreL3[l2]) {
+        for(let i = 0; i < 9; i++) {
+          if(this.state.scoreL3[i])
+            continue;
+          for(let j = 0; j < 9; j++) {
+            if(!this.state.scoreL2[i][j]) {
+              newNPlayable[i][j] = 1;
+            }
+          }
+        }
+      }
+      else {
+        if(this.state.scoreL2[l2][l1]) {
+          for(let i = 0; i < 9; i++) {
+            if(i !== l1 && !this.state.scoreL2[l2][i]) {
+              newNPlayable[l2][i] = 1;
+            }
+          }
+        }
+        else {
+          newNPlayable[l2][l1] = 1;
+        }
+      }
+
+      this.setState({
+	scoreL1: this.state.scoreL1,
+        scoreL2: this.state.scoreL2,
+        scoreL3: this.state.scoreL3,
+        player: this.state.player,
+        playablel2: this.state.playablel2,
+        lastPlayedl3: this.state.lastPlayedl3,
+        lastPlayedl2: this.state.lastPlayedl2,
+        lastPlayedl1: this.state.lastPlayedl1,
+        nplayable: newNPlayable
+      });
+    }
+  }
+
   render() {
     return (
       <div className="game">
         <L3Board score={this.state.scoreL1} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
-          /*playablel3={this.state.playablel3}*/ playablel2={this.state.playablel2} player={this.state.player}
+	  onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
+          /*playablel3={this.state.playablel3}*/ playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
           lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}/>
       </div>
     );

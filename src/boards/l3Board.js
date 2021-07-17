@@ -22,7 +22,9 @@ class L3Board extends React.Component {
       <L2Board
         score={this.props.score[l3]}
         onClick={(l1, l2) => { this.props.onClick(l1, l2, l3); console.log(l3, this.props.score[l3]); }}
+        onMouseEnter={(l1, l2) => this.props.onMouseEnter(l1, l2, l3)}
         playablel2={this.props.playablel2[l3]}
+        nplayable={this.props.nplayable[l3]}
         player={this.props.player}
         lastPlayedl2={lp2}
         lastPlayedl1={lp1}
