@@ -14,7 +14,7 @@
 }
 
 .playableCell1 {
-  background: rgb(0, 255, 76);
+  background: rgb(174, 0, 255);
   border: 1px solid #999;
   float: left;
   font-size: 24px;
@@ -29,7 +29,7 @@
 }
 
 .playableCell2 {
-  background: rgb(255, 0, 0);
+  background: rgb(10, 7, 211);
   border: 1px solid #999;
   float: left;
   font-size: 24px;
@@ -59,7 +59,7 @@
 }
 
 .lastPlayedCell1 {
-  background: rgba(0, 255, 76, 0.5);
+  background: rgba(241, 168, 241, 0.979);
   border: 1px solid #999;
   float: left;
   font-size: 24px;
@@ -74,7 +74,7 @@
 }
 
 .lastPlayedCell2 {
-  background: rgba(255, 0, 0, 0.5);
+  background: rgba(20, 76, 228, 0.932);
   border: 1px solid #999;
   float: left;
   font-size: 24px;
