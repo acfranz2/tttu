@@ -9,6 +9,15 @@ function Home() {
             <button className='button'>
                 Ultra
             </button>
+            <div className='divider'></div>
+            <button className='button'>
+                Ultimate
+            </button>
+            <div className='divider'></div>
+            <button className='button'>
+                TicTacToe
+            </button>
+            
         </div>
     )
 }

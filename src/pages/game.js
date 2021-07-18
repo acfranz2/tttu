@@ -1,5 +1,7 @@
 import React from 'react'
 import L3Board from '../boards/l3Board'
+import historybar from '../components/historybar';
+
 
 
 class Game extends React.Component {
@@ -100,7 +102,7 @@ class Game extends React.Component {
           newNPlayable[l2][l1] = 1;
         }
       }
-
+      
       this.setState({
         scoreL1: this.state.scoreL1,
         scoreL2: this.state.scoreL2,
@@ -117,7 +119,6 @@ class Game extends React.Component {
 
   render() {
     return (
-
       <div className="game">
         <L3Board score={this.state.scoreL1} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
           onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
