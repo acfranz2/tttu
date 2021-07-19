@@ -10,14 +10,14 @@ class L2Game extends React.Component {
       player: true,
       winner: null,
       playablel1: Array(9).fill(1),
+      nplayable: Array(9).fill(null),
       lastPlayedl2: -1,
       lastPlayedl1: -1
     };
   }
 
   handleClick(l1, l2) {
-    // console.log(this.state.playablel2 + ', ' + l1);
-    // console.log(this.state.playablel3 + ', ' + l2);
+
     if (this.state.playablel1[l2] && !this.state.scoreL1[l2][l1]) {
       const newScoreL1 = this.state.scoreL1;
       const newScoreL2 = this.state.scoreL2;
@@ -47,8 +47,38 @@ class L2Game extends React.Component {
         player: !this.state.player,
 	winner: newWinner,
         playablel1: newPlayableL1,
+	nplayable: Array(9).fill(null),
         lastPlayedl2: l2,
         lastPlayedl1: l1
+      });
+    }
+  }
+
+  handleHover(l1, l2) {
+
+    if (this.state.playablel1[l2] && !this.state.scoreL1[l2][l1]) {
+      const newNPlayable = Array(9).fill(null);
+
+      if (this.state.scoreL2[l1]) {
+        for(let i = 0; i < 9; i++) {
+          if(!this.state.scoreL2[i]) {
+            newNPlayable[i] = 1;
+          }
+        }
+      }
+      else {
+        newNPlayable[l1] = 1;
+      }
+
+      this.setState({
+        scoreL1: this.state.scoreL1,
+        scoreL2: this.state.scoreL2,
+        player: this.state.player,
+        winner: this.state.winner,
+        playablel1: this.state.playablel1,
+        nplayable: newNPlayable,
+        lastPlayedl2: this.state.lastPlayedl2,
+        lastPlayedl1: this.state.lastPlayedl1
       });
     }
   }
@@ -57,7 +87,8 @@ class L2Game extends React.Component {
     return (
       <div className="game">
          <L2Board score={this.state.scoreL1} onClick={(l1, l2) => this.handleClick(l1, l2)}
-            playablel2={this.state.playablel1} player={this.state.player}
+	    onMouseEnter={(l1, l2) => this.handleHover(l1, l2)}
+            playablel2={this.state.playablel1} nplayable={this.state.nplayable} player={this.state.player}
             lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}/>
       </div>
     );
