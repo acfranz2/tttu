@@ -7,7 +7,7 @@ class L1Board extends React.Component {
 
     let cellType = "cell";
 
-    // check to see if cell is in next playable area
+    /*// check to see if cell is in next playable area
     if (this.props.playable) {
       if (this.props.player) {
         cellType = "playableCell1";
@@ -29,30 +29,38 @@ class L1Board extends React.Component {
 
     if(this.props.nplayable) {
       cellType = "nplayable";
-    }
+    }*/
 
     return (
-      <button
-        className={cellType}
+      <td
+	id={"cell" + l1}
+        //className={cellType}
         onClick={() => this.props.onClick(l1)}
-	onMouseEnter={() => this.props.onMouseEnter(l1)}>{this.props.score[l1]}
-      </button>
+	onMouseEnter={() => this.props.onMouseEnter(l1)}>
+        {this.props.score[l1]}
+      </td>
     );
   }
 
   render() {
     return (
-      <div className="l1board">
-        {this.renderCell(0)}
-        {this.renderCell(1)}
-        {this.renderCell(2)}
-        {this.renderCell(3)}
-        {this.renderCell(4)}
-        {this.renderCell(5)}
-        {this.renderCell(6)}
-        {this.renderCell(7)}
-        {this.renderCell(8)}
-      </div>
+      <tbody>
+        <tr>
+          {this.renderCell(0)}
+          {this.renderCell(1)}
+          {this.renderCell(2)}
+        </tr>
+        <tr>
+          {this.renderCell(3)}
+          {this.renderCell(4)}
+          {this.renderCell(5)}
+        </tr>
+        <tr>
+          {this.renderCell(6)}
+          {this.renderCell(7)}
+          {this.renderCell(8)}
+        </tr>
+      </tbody>
     );
   }
 }

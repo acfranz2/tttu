@@ -117,10 +117,12 @@ class Game extends React.Component {
   render() {
     return (
       <div className="game">
-        <L3Board score={this.state.scoreL1} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
-	  onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
-          /*playablel3={this.state.playablel3}*/ playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
-          lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}/>
+	<table>
+          <L3Board score={this.state.scoreL1} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
+	    onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
+            /*playablel3={this.state.playablel3}*/ playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
+            lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}/>
+	</table>
       </div>
     );
   }

@@ -1,16 +1,14 @@
 .cell {
   background: #fff;
-  border: 1px solid #999;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  height: 30px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 30px;
+  display: inline-block;
 }
 
 .playableCell1 {
@@ -20,12 +18,11 @@
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  height: 100%;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100%;
+  display: inline-block;
 }
 
 .playableCell2 {
@@ -35,12 +32,11 @@
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  height: 100%;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100%;
+  display: inline-block;
 }
 
 .nplayable {
@@ -50,12 +46,11 @@
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  height: 100%;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100%;
+  display: inline-block;
 }
 
 .lastPlayedCell1 {
@@ -65,12 +60,11 @@
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  height: 100%;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100%;
+  display: inline-block;
 }
 
 .lastPlayedCell2 {
@@ -80,18 +74,20 @@
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  height: 100%;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100%;
+  display: inline-block;
 }
 
 
 
 .cell:focus {
   outline: none;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
 }
 
 .l1board {
@@ -112,4 +108,59 @@
   grid-template-columns: 316px 316px 316px;
   grid-template-columns: 316px 316px 316px;
   grid-gap: 15px;
+}
+
+/*table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+td {
+  width: 33.333%;
+  border: 2px solid #222;
+}
+
+td::after {
+  content: "";
+  display: block;
+  margin-top: 100%;
+}
+
+td {
+  border: 2px solid #222;
+}
+
+td:first-of-type {
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+td:nth-of-type(2) {
+  border-top-color: transparent;
+}
+
+td:nth-of-type(3) {
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+tr:nth-of-type(3) td {
+  border-bottom-color: transparent;
+}*/
+table {
+  width: 1.3em;
+  height: 1.3em;
+  text-align: center;
+  vertical-align: middle;
+  font: bold 12px sans-serif;
+  border-spacing: 0;
+}
+
+td#cell0, td#cell1, td#cell2, td#cell3, td#cell4, td#cell5 {
+  border-bottom: 1px solid #930;
+}
+
+td#cell0, td#cell1, td#cell3, td#cell4, td#cell6, td#cell7 {
+  border-right: 1px solid #930;
 }

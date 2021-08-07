@@ -36,17 +36,23 @@ class L3Board extends React.Component {
   render() {
 
     return (
-      <div className="l3board">
-        {this.renderL2Board(0)}
-        {this.renderL2Board(1)}
-        {this.renderL2Board(2)}
-        {this.renderL2Board(3)}
-        {this.renderL2Board(4)}
-        {this.renderL2Board(5)}
-        {this.renderL2Board(6)}
-        {this.renderL2Board(7)}
-        {this.renderL2Board(8)}
-      </div>
+      <tbody>
+	<tr>
+          <td id={"cell0"}><table>{this.renderL2Board(0)}</table></td>
+          <td id={"cell1"}><table>{this.renderL2Board(1)}</table></td>
+	  <td id={"cell2"}><table>{this.renderL2Board(2)}</table></td>
+        </tr>
+	<tr>
+	  <td id={"cell3"}><table>{this.renderL2Board(3)}</table></td>
+	  <td id={"cell4"}><table>{this.renderL2Board(4)}</table></td>
+	  <td id={"cell5"}><table>{this.renderL2Board(5)}</table></td>
+	</tr>
+	<tr>
+          <td id={"cell6"}><table>{this.renderL2Board(6)}</table></td>
+	  <td id={"cell7"}><table>{this.renderL2Board(7)}</table></td>
+	  <td id={"cell8"}><table>{this.renderL2Board(8)}</table></td>
+	</tr> 
+      </tbody>
     );
   }
 }

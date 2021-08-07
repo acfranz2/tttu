@@ -56,9 +56,11 @@ class L2Game extends React.Component {
   render() {
     return (
       <div className="game">
-         <L2Board score={this.state.scoreL1} onClick={(l1, l2) => this.handleClick(l1, l2)}
+	<table>
+          <L2Board score={this.state.scoreL1} onClick={(l1, l2) => this.handleClick(l1, l2)}
             playablel2={this.state.playablel1} player={this.state.player}
             lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}/>
+        </table>
       </div>
     );
   }

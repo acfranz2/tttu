@@ -7,7 +7,6 @@ import L2Game from './l2Game';
 //import L2Board from './boards/l2Board'
 //import L3Board from './boards/l3Board'
 import reportWebVitals from './reportWebVitals';
-import './App.css';
 
 ReactDOM.render(<Game />, document.getElementById("root"));
 
