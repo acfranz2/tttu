@@ -1,6 +1,6 @@
 import React from 'react'
 
-class historybar extends React.Component {
+class Historybar extends React.Component {
     render() {
         return (
             <div>
@@ -10,4 +10,4 @@ class historybar extends React.Component {
     }
 }
 
-export default historybar
+export default Historybar
