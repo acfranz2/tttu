@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,11 +12,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Box from '@material-ui/core/Box'
 import { sizing } from '@material-ui/system';
 import Container from '@material-ui/core/Container';
+import { TabPanel } from '@material-ui/lab';
+import { Typography } from '@material-ui/core';
 
-class Historybar extends React.Component {
+function Historybar(props) {
 
-    _renderBoards() {
-        return this.props.board_hist.map(element => {
+    const _renderBoards = () => {
+        return props.board_hist.map(element => {
             const string = '(' + element.l3 + ' , ' + element.l2 + ' , ' + element.l1 + ')'
             return (<ListItem >
                 <ListItemText primary={string}>
@@ -25,24 +27,43 @@ class Historybar extends React.Component {
         })
     }
 
+    const Panel = (p) => (
+        <div hidden={p.value !== p.index}>
+            <Typography>{p.children}</Typography>
+        </div>
+    )
 
-    render() {
-
-        return (
-            <div>
-            
-
-            <Container maxWidth="sm">History</Container>
-
-                <Paper style={{maxHeight: "50vh", overflow: 'auto' }}>
-                    
-                    <List>
-                        {this._renderBoards()}
-                    </List>
-                </Paper>
-            </div>
-        );
+    const [index, setIndex] = useState(0);
+    const onTabClicked = (event, index) => {
+        setIndex(index);
     }
+
+    return (
+        <div>
+            <Paper style={{ maxHeight: "50vh", overflow: 'auto' }}>
+                <Tabs
+                    value={index}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    onChange={onTabClicked}
+                >
+                    <Tab label="History" />
+                    <Tab label="Players" />
+                </Tabs>
+                <Panel value={index} index={0}>
+                    <List>
+                        {_renderBoards()}
+                    </List>
+                </Panel>
+                <Panel value={index} index={1}>
+                    Player 1
+                    Player 2
+                </Panel>
+
+            </Paper>
+        </div>
+    );
+
 
 
 }
