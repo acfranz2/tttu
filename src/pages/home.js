@@ -21,7 +21,7 @@ export default function Home() {
         <Container>
             <div>
                 <header className='heading'>
-                    <Typography variant="h2">
+                    <Typography variant="h1">
                         TicTacToeUltra
                     </Typography>
                 </header>

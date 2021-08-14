@@ -3,6 +3,7 @@ import L3Board from '../boards/l3Board'
 import L2Board from '../boards/l2Board'
 import Historybar from '../components/historybar';
 import Navbar from '../components/Navbar';
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -19,13 +20,15 @@ class Game extends React.Component {
       nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
       lastPlayedl3: -1,
       lastPlayedl2: -1,
-      lastPlayedl1: -1
+      lastPlayedl1: -1,
+      board_hist: []
     };
   }
 
   handleClick(l1, l2, l3) {
     //console.log(this.state.playablel2 + ', ' + l1);
     //console.log(this.state.playablel3 + ', ' + l2);
+
 
     if (this.state.playablel2[l3][l2] && !this.state.scoreL1[l3][l2][l1]) {
       const newScoreL1 = this.state.scoreL1;
@@ -63,6 +66,7 @@ class Game extends React.Component {
           newPlayableL2[l2][l1] = 1;
         }
       }
+      this.state.board_hist.push({ "l3": l3, "l2": l2, "l1": l1 })
 
       this.setState({
         scoreL1: newScoreL1,
@@ -75,7 +79,9 @@ class Game extends React.Component {
         lastPlayedl2: l2,
         lastPlayedl1: l1
       });
+
     }
+
   }
 
   handleHover(l1, l2, l3) {
@@ -124,11 +130,17 @@ class Game extends React.Component {
     return (
       <div className="game">
         <Navbar />
-        <L3Board score={this.state.scoreL1} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
-          onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
+        <Grid container direction={'row'} spacing={5} justify="left" width={1}>
+          <Grid item >
+            <L3Board score={this.state.scoreL1} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
+              onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
           /*playablel3={this.state.playablel3}*/ playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
-          lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1} />
-        <Historybar />
+              lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1} />
+          </Grid>
+          <Grid item >
+            <Historybar board_hist={this.state.board_hist} />
+          </Grid>
+        </Grid>
       </div>
     );
   }
