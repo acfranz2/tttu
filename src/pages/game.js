@@ -138,7 +138,7 @@ class Game extends React.Component {
               lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1} />
           </Grid>
           <Grid item >
-            <Historybar board_hist={this.state.board_hist} />
+            <Historybar board_hist={this.state.board_hist} player={this.state.player}/>
           </Grid>
         </Grid>
       </div>

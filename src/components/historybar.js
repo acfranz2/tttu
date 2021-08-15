@@ -14,6 +14,9 @@ import { sizing } from '@material-ui/system';
 import Container from '@material-ui/core/Container';
 import { TabPanel } from '@material-ui/lab';
 import { Typography } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 function Historybar(props) {
 
@@ -37,6 +40,8 @@ function Historybar(props) {
     const onTabClicked = (event, index) => {
         setIndex(index);
     }
+    const color_1 = props.player ? "rgb(3, 86, 141)" : "white";
+    const color_2 = props.player ? "white" : "rgb(146, 7, 211)";
 
     return (
         <div>
@@ -56,8 +61,20 @@ function Historybar(props) {
                     </List>
                 </Panel>
                 <Panel value={index} index={1}>
-                    Player 1
-                    Player 2
+                    <Card style={{ backgroundColor: color_1 }}>
+                        <CardContent>
+                            <Typography>
+                                Player 1
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                    <Card style={{ backgroundColor: color_2 }}>
+                        <CardContent>
+                            <Typography>
+                                Player 2
+                            </Typography>
+                        </CardContent>
+                    </Card>
                 </Panel>
 
             </Paper>
