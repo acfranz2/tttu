@@ -18,19 +18,28 @@ class L3Board extends React.Component {
 
     }
 
-    return (
-      <L2Board
-        score={this.props.score[l3]}
-        onClick={(l1, l2) => { this.props.onClick(l1, l2, l3); console.log(l3, this.props.score[l3]); }}
-        onMouseEnter={(l1, l2) => this.props.onMouseEnter(l1, l2, l3)}
-        playablel2={this.props.playablel2[l3]}
-        nplayable={this.props.nplayable[l3]}
-        player={this.props.player}
-        lastPlayedl2={lp2}
-        lastPlayedl1={lp1}
-
-      />
-    );
+    if(this.props.scoreL3[l3] === "drawn" || this.props.scoreL3[l3] === null)
+      return (
+	<table className={"l2table"}>
+          <L2Board
+            scoreL1={this.props.scoreL1[l3]}
+            scoreL2={this.props.scoreL2[l3]}
+            onClick={(l1, l2) => this.props.onClick(l1, l2, l3)}
+            onMouseEnter={(l1, l2) => this.props.onMouseEnter(l1, l2, l3)}
+            playablel2={this.props.playablel2[l3]}
+            nplayable={this.props.nplayable[l3]}
+            player={this.props.player}
+            lastPlayedl2={lp2}
+            lastPlayedl1={lp1}
+          />
+	</table>
+      );	
+    else
+      return (
+        <div className="l3Score">
+	  {this.props.scoreL3[l3]}
+	</div>
+      );
   }
 
   render() {
@@ -38,19 +47,19 @@ class L3Board extends React.Component {
     return (
       <tbody>
 	<tr>
-          <td id={"cell0"}><table>{this.renderL2Board(0)}</table></td>
-          <td id={"cell1"}><table>{this.renderL2Board(1)}</table></td>
-	  <td id={"cell2"}><table>{this.renderL2Board(2)}</table></td>
+          <td id={"cellL30"}>{this.renderL2Board(0)}</td>
+          <td id={"cellL31"}>{this.renderL2Board(1)}</td>
+	  <td id={"cellL32"}>{this.renderL2Board(2)}</td>
         </tr>
 	<tr>
-	  <td id={"cell3"}><table>{this.renderL2Board(3)}</table></td>
-	  <td id={"cell4"}><table>{this.renderL2Board(4)}</table></td>
-	  <td id={"cell5"}><table>{this.renderL2Board(5)}</table></td>
+	  <td id={"cellL33"}>{this.renderL2Board(3)}</td>
+	  <td id={"cellL34"}>{this.renderL2Board(4)}</td>
+	  <td id={"cellL35"}>{this.renderL2Board(5)}</td>
 	</tr>
 	<tr>
-          <td id={"cell6"}><table>{this.renderL2Board(6)}</table></td>
-	  <td id={"cell7"}><table>{this.renderL2Board(7)}</table></td>
-	  <td id={"cell8"}><table>{this.renderL2Board(8)}</table></td>
+          <td id={"cellL36"}>{this.renderL2Board(6)}</td>
+	  <td id={"cellL37"}>{this.renderL2Board(7)}</td>
+	  <td id={"cellL38"}>{this.renderL2Board(8)}</td>
 	</tr> 
       </tbody>
     );

@@ -7,7 +7,7 @@ class L1Board extends React.Component {
 
     let cellType = "cell";
 
-    /*// check to see if cell is in next playable area
+    // check to see if cell is in next playable area
     if (this.props.playable) {
       if (this.props.player) {
         cellType = "playableCell1";
@@ -15,6 +15,9 @@ class L1Board extends React.Component {
       else {
         cellType = "playableCell2";
       }
+    }
+    else if(this.props.nplayable) { 
+      cellType = "nplayable";
     }
 
     // check to see if cell was just played
@@ -29,15 +32,16 @@ class L1Board extends React.Component {
 
     if(this.props.nplayable) {
       cellType = "nplayable";
-    }*/
+    }
 
     return (
-      <td
-	id={"cell" + l1}
-        //className={cellType}
-        onClick={() => this.props.onClick(l1)}
-	onMouseEnter={() => this.props.onMouseEnter(l1)}>
-        {this.props.score[l1]}
+      <td id={"cellL1" + l1}>
+	<button
+          className={cellType}
+          onClick={() => this.props.onClick(l1)}
+	  onMouseEnter={() => this.props.onMouseEnter(l1)}>
+          {this.props.scoreL1[l1]}
+	</button>
       </td>
     );
   }
