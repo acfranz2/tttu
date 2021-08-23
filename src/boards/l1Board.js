@@ -8,18 +8,6 @@ class L1Board extends React.Component {
     let cellType = "cell";
 
     // check to see if cell is in next playable area
-    if (this.props.playable) {
-      if (this.props.player) {
-        cellType = "playableCell1";
-      }
-      else {
-        cellType = "playableCell2";
-      }
-    }
-    else if(this.props.nplayable) { 
-      cellType = "nplayable";
-    }
-
     // check to see if cell was just played
     if (this.props.lastPlayedl1 === l1) {
       if (this.props.player) {
@@ -29,8 +17,15 @@ class L1Board extends React.Component {
         cellType = "lastPlayedCell1";
       }
     }
-
-    if(this.props.nplayable) {
+    else if (this.props.playable) {
+      if (this.props.player) {
+        cellType = "playableCell1";
+      }
+      else {
+        cellType = "playableCell2";
+      }
+    }
+    else if(this.props.nplayable) { 
       cellType = "nplayable";
     }
 

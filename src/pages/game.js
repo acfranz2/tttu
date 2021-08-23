@@ -126,15 +126,10 @@ class Game extends React.Component {
     }
   }
 
-  handleTest() {
-    console.log("butt");
-  }
-
   render() {
     return (
       <div className="game">
-        <Navbar />
-        <Grid container direction={'row'} spacing={5} justify="left" width={1}>
+        <Grid container direction="row" alignItems="stretch" justifyContent="space-between" spacing={3}>
           <Grid item >
             <table className="l3table">
               <L3Board scoreL1={this.state.scoreL1} scoreL2={this.state.scoreL2} scoreL3={this.state.scoreL3} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
@@ -144,7 +139,7 @@ class Game extends React.Component {
             </table>
 	  </Grid>
           <Grid item >
-            <Historybar board_hist={this.state.board_hist} player={this.state.player}/>
+            <Historybar className="historybar" board_hist={this.state.board_hist} player={this.state.player}/>
           </Grid>
         </Grid>
       </div>

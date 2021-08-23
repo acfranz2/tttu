@@ -1,3 +1,18 @@
+.game {  
+  background: white;
+  position: absolute;
+  display: inline-block;
+  left: -500px;
+  width: 1000px;
+  height: 800px;
+  margin: 3% 50%;
+}
+
+.historybar {
+  display: flex;
+  float: right;
+}
+
 .cell {
   height: 20px;
   width: 20px;
@@ -15,7 +30,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgb(0, 255, 76);
+  background: rgb(3, 86, 141);
 }
 
 .playableCell2 {
@@ -25,7 +40,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgb(255, 0, 0);
+  background: rgb(146, 7, 211);
 }
 
 .nplayable {
@@ -45,7 +60,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgba(0, 255, 76, 0.5);
+  background: rgba(241, 168, 241, 0.979);
 }
 
 .lastPlayedCell2 {
@@ -55,7 +70,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgba(255, 0, 0, 0.5);
+  background: rgba(20, 76, 228, 0.932);
 }
 
 .l2Score {
@@ -80,13 +95,15 @@
   vertical-align: middle;
   font: bold 12px sans-serif;
   border-collapse: collapse;
+  height: 33.33%;
+  width: 33.33%;
 }
 
 .l1table::before {
   content: attr(data-score);
   justify-content: center;
-  height: 62px;
-  width: 62px;
+  height: 33.33%;
+  width: 33.33%;
 }
 
 .l2table { 
@@ -94,6 +111,8 @@
   vertical-align: middle;
   border-collapse: collapse;
   display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .l3table {
