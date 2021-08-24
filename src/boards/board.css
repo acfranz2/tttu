@@ -50,7 +50,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgb(211, 211, 211);
+  background: rgba(211, 211, 211,.8);
 }
 
 .lastPlayedCell1 {

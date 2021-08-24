@@ -12,34 +12,33 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      scoreL1: Array(9).fill(null).map(() => Array(9).fill(null).map(() => Array(9).fill(null))),
-      scoreL2: Array(9).fill(null).map(() => Array(9).fill(null)),
-      scoreL3: Array(9).fill(null),
       player: true,
       playablel2: Array(9).fill(null).map(() => Array(9).fill(1)),
       nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
-      lastPlayedl3: -1,
-      lastPlayedl2: -1,
-      lastPlayedl1: -1,
-      board_hist: []
+      board_hist: [{
+        scoreL1: Array(9).fill(null).map(() => Array(9).fill(null).map(() => Array(9).fill(null))),
+        scoreL2: Array(9).fill(null).map(() => Array(9).fill(null)),
+        scoreL3: Array(9).fill(null),  
+        lastPlayedl3: -1,
+        lastPlayedl2: -1,
+        lastPlayedl1: -1,
+        move: ""
+      }],
+      stepNumber: 0, // step being looked at
+      currentStepNumber: 0, // step last played
     };
   }
 
   handleClick(l1, l2, l3) {
-    //console.log(this.state.playablel2 + ', ' + l1);
-    //console.log(this.state.playablel3 + ', ' + l2);
-
-
-    if (this.state.playablel2[l3][l2] && !this.state.scoreL1[l3][l2][l1]) {
-      const newScoreL1 = this.state.scoreL1;
-      const newScoreL2 = this.state.scoreL2;
-      const newScoreL3 = this.state.scoreL3;
+    const history = this.state.board_hist;
+    const newScoreL1 = history[this.state.stepNumber].scoreL1;
+    if (this.state.stepNumber === this.state.currentStepNumber && this.state.playablel2[l3][l2] && !newScoreL1[l3][l2][l1]) {
+      const newScoreL2 = history[this.state.stepNumber].scoreL2;
+      const newScoreL3 = history[this.state.stepNumber].scoreL3;
       const newPlayableL2 = Array(9).fill(null).map(() => Array(9).fill(null));
+      const newStepNumber = this.state.stepNumber + 1;
 
       newScoreL1[l3][l2][l1] = this.state.player ? "X" : "O";
-
-      //console.log(l3 + 1, l2 + 1, l1 + 1);
-
       newScoreL2[l3][l2] = checkScore(newScoreL1[l3][l2]);
       newScoreL3[l3] = checkScore(newScoreL2[l3]);
 
@@ -66,18 +65,27 @@ class Game extends React.Component {
           newPlayableL2[l2][l1] = 1;
         }
       }
-      this.state.board_hist.push({ "l3": l3, "l2": l2, "l1": l1 })
 
       this.setState({
         scoreL1: newScoreL1,
         scoreL2: newScoreL2,
         scoreL3: newScoreL3,
         player: !this.state.player,
-        nplayable: this.state.nplayable,
         playablel2: newPlayableL2,
         lastPlayedl3: l3,
         lastPlayedl2: l2,
-        lastPlayedl1: l1
+        lastPlayedl1: l1,
+        board_hist: history.concat([{
+          scoreL1: newScoreL1,
+          scoreL2: newScoreL2,
+          scoreL3: newScoreL3,
+          lastPlayedl3: l3,
+          lastPlayedl2: l2,
+          lastPlayedl1: l1,
+          move: '(' + (l3 + 1) + ', ' + (l2 + 1) + ', ' + (l1 + 1) + ')',
+        }]),
+        stepNumber: newStepNumber,
+        currentStepNumber: newStepNumber,
       });
 
     }
@@ -85,24 +93,26 @@ class Game extends React.Component {
   }
 
   handleHover(l1, l2, l3) {
-    if (this.state.playablel2[l3][l2] && !this.state.scoreL1[l3][l2][l1]) {
+    const currBoard = this.state.board_hist[this.state.stepNumber];
+
+    if (this.state.playablel2[l3][l2] && !currBoard.scoreL1[l3][l2][l1]) {
       const newNPlayable = Array(9).fill(null).map(() => Array(9).fill(null));
 
-      if (this.state.scoreL3[l2]) {
+      if (currBoard.scoreL3[l2]) {
         for (let i = 0; i < 9; i++) {
-          if (this.state.scoreL3[i])
+          if (currBoard.scoreL3[i])
             continue;
           for (let j = 0; j < 9; j++) {
-            if (!this.state.scoreL2[i][j]) {
+            if (!currBoard.scoreL2[i][j]) {
               newNPlayable[i][j] = 1;
             }
           }
         }
       }
       else {
-        if (this.state.scoreL2[l2][l1]) {
+        if (currBoard.scoreL2[l2][l1]) {
           for (let i = 0; i < 9; i++) {
-            if (i !== l1 && !this.state.scoreL2[l2][i]) {
+            if (i !== l1 && !currBoard.scoreL2[l2][i]) {
               newNPlayable[l2][i] = 1;
             }
           }
@@ -113,33 +123,27 @@ class Game extends React.Component {
       }
 
       this.setState({
-        scoreL1: this.state.scoreL1,
-        scoreL2: this.state.scoreL2,
-        scoreL3: this.state.scoreL3,
-        player: this.state.player,
-        playablel2: this.state.playablel2,
-        lastPlayedl3: this.state.lastPlayedl3,
-        lastPlayedl2: this.state.lastPlayedl2,
-        lastPlayedl1: this.state.lastPlayedl1,
         nplayable: newNPlayable
       });
     }
   }
 
   render() {
+    const currBoard = this.state.board_hist[this.state.stepNumber];
+    const hist = this.state.board_hist.map((move) => {return move.move});
     return (
       <div className="game">
         <Grid container direction="row" alignItems="stretch" justifyContent="space-between" spacing={3}>
           <Grid item >
             <table className="l3table">
-              <L3Board scoreL1={this.state.scoreL1} scoreL2={this.state.scoreL2} scoreL3={this.state.scoreL3} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
+              <L3Board scoreL1={currBoard.scoreL1} scoreL2={currBoard.scoreL2} scoreL3={currBoard.scoreL3} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
                 onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
                 /*playablel3={this.state.playablel3}*/ playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
-                lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}/>
+                lastPlayedl3={currBoard.lastPlayedl3} lastPlayedl2={currBoard.lastPlayedl2} lastPlayedl1={currBoard.lastPlayedl1}/>
             </table>
 	  </Grid>
           <Grid item >
-            <Historybar className="historybar" board_hist={this.state.board_hist} player={this.state.player}/>
+            <Historybar className="historybar" board_hist={hist} player={this.state.player}/>
           </Grid>
         </Grid>
       </div>

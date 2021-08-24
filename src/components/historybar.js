@@ -17,17 +17,18 @@ import { Typography } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import { FixedSizeList } from 'react-window';
 
 function Historybar(props) {
 
-    const _renderBoards = () => {
-        return props.board_hist.map(element => {
-            const string = '(' + element.l3 + ' , ' + element.l2 + ' , ' + element.l1 + ')'
-            return (<ListItem >
-                <ListItemText primary={string}>
-                </ListItemText>
-            </ListItem >)
-        })
+    const _renderMove = () => {
+        return props.board_hist.map(element=> {
+            return (
+                <ListItem button>
+                    <ListItemText primary={element}>
+                    </ListItemText>
+                </ListItem >);
+        });
     }
 
     const Panel = (p) => (
@@ -44,20 +45,23 @@ function Historybar(props) {
     const color_2 = props.player ? "white" : "rgb(146, 7, 211)";
 
     return (
-        <div>
-            <Paper style={{ maxHeight: "50vh", overflow: 'auto' }}>
+        <div style={{width: "320px"}}>
+            <div>
                 <Tabs
                     value={index}
                     indicatorColor="primary"
                     textColor="primary"
                     onChange={onTabClicked}
+                    centered
                 >
                     <Tab label="History" />
                     <Tab label="Players" />
                 </Tabs>
+            </div>
+            <div>
                 <Panel value={index} index={0}>
-                    <List>
-                        {_renderBoards()}
+                    <List height={400} width={300} itemSize={46} itemCount={200}>
+                        {_renderMove()}
                     </List>
                 </Panel>
                 <Panel value={index} index={1}>
@@ -76,8 +80,7 @@ function Historybar(props) {
                         </CardContent>
                     </Card>
                 </Panel>
-
-            </Paper>
+            </div>
         </div>
     );
 
