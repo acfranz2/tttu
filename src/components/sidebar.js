@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(type) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -101,11 +101,6 @@ export default function PersistentDrawerLeft() {
             text: 'Home',
             icon: <HomeIcon></HomeIcon>,
             onClick: () => history.push('/')
-        },
-        {
-            text: 'Game',
-            icon: <SportsEsportsIcon></SportsEsportsIcon>,
-            onClick: () => history.push('/game_stage')
         },
         {
             text: 'Settings',

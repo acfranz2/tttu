@@ -18,13 +18,24 @@ class game_stage extends React.Component {
           </div>
         );
       }
+      else {
+        return (
+          <div>
+            <PersistentDrawerLeft />
+            <Game />
+          </div>
+        );
+      }
     }
-    return (
-      <div>
-        <PersistentDrawerLeft />
-        <Game />
-      </div>
-    );
+    else {
+      return (
+        <div>
+          <PersistentDrawerLeft />
+          <Game />
+        </div>
+      );
+    }
+    
   }
 }
 
