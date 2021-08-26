@@ -135,11 +135,11 @@ class Game extends React.Component {
               <L3Board scoreL1={this.state.scoreL1} scoreL2={this.state.scoreL2} scoreL3={this.state.scoreL3} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
                 onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
                 /*playablel3={this.state.playablel3}*/ playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
-                lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}/>
+                lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1} />
             </table>
-	  </Grid>
+          </Grid>
           <Grid item >
-            <Historybar className="historybar" board_hist={this.state.board_hist} player={this.state.player}/>
+            <Historybar className="historybar" board_hist={this.state.board_hist} player={this.state.player} />
           </Grid>
         </Grid>
       </div>

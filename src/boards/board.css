@@ -1,11 +1,10 @@
 .game {  
-  background: white;
   position: absolute;
   display: inline-block;
   left: -500px;
   width: 1000px;
   height: 800px;
-  margin: 3% 50%;
+  margin: -2% 50%;
 }
 
 .historybar {
@@ -30,7 +29,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgb(3, 86, 141);
+  background: rgb(33, 139, 209);
 }
 
 .playableCell2 {
@@ -40,7 +39,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgb(146, 7, 211);
+  background: rgb(162, 31, 223);
 }
 
 .nplayable {
@@ -70,7 +69,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgba(20, 76, 228, 0.932);
+  background: rgb(91, 175, 231);
 }
 
 .l2Score {
@@ -122,11 +121,11 @@
 }
 
 td#cellL10, td#cellL11, td#cellL12, td#cellL13, td#cellL14, td#cellL15 {
-  border-bottom: 1px solid #930;
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 td#cellL10, td#cellL11, td#cellL13, td#cellL14, td#cellL16, td#cellL17 {
-  border-right: 1px solid #930;
+  border-right: 1px solid rgb(0, 0, 0);
 }
 
 td#cellL10, td#cellL11, td#cellL12, td#cellL13, td#cellL14, td#cellL15, #cellL16, td#cellL17, td#cellL18 {
@@ -134,11 +133,11 @@ td#cellL10, td#cellL11, td#cellL12, td#cellL13, td#cellL14, td#cellL15, #cellL16
 }
 
 td#cellL20, td#cellL21, td#cellL22, td#cellL23, td#cellL24, td#cellL25 {
-  border-bottom: 2px solid #930;
+  border-bottom: 2px solid rgb(0, 0, 0);
 }
 
 td#cellL20, td#cellL21, td#cellL23, td#cellL24, td#cellL26, td#cellL27 {
-  border-right: 2px solid #930;
+  border-right: 2px solid rgb(0, 0, 0);
 }
 
 td#cellL20, td#cellL21, td#cellL22, td#cellL23, td#cellL24, td#cellL25, #cellL26, td#cellL27, td#cellL28 {
@@ -146,11 +145,11 @@ td#cellL20, td#cellL21, td#cellL22, td#cellL23, td#cellL24, td#cellL25, #cellL26
 }
 
 td#cellL30, td#cellL31, td#cellL32, td#cellL33, td#cellL34, td#cellL35 {
-  border-bottom: 3px solid #930;
+  border-bottom: 3px solid rgb(0, 0, 0);
 }
 
 td#cellL30, td#cellL31, td#cellL33, td#cellL34, td#cellL36, td#cellL37 {
-  border-right: 3px solid #930;
+  border-right: 3px solid rgb(0, 0, 0);
 }
 
 td#cellL30, td#cellL31, td#cellL32, td#cellL33, td#cellL34, td#cellL35, #cellL36, td#cellL37, td#cellL38 {

@@ -112,7 +112,11 @@ export function game_settings_page() {
                             </ToggleButtonGroup>
                         </Grid>
                         <Grid item>
-                            <Link to="/game_stage" style={{ textDecoration: 'none' }}>
+                            <Link to={{
+                                pathname: "/game_stage",
+                                state: { type: type }
+                            }}
+                                style={{ textDecoration: 'none' }} >
                                 <Button
                                     endIcon={<SportsEsportsIcon />}
                                     color="secondary" >
