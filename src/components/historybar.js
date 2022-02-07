@@ -45,12 +45,13 @@ function Historybar(props) {
 
     return (
         <div>
-            <Paper style={{ maxHeight: "50vh", overflow: 'auto' }}>
+            <Paper style={{ maxHeight: "50vh", overflow: 'auto',}}>
                 <Tabs
                     value={index}
                     indicatorColor="primary"
                     textColor="primary"
                     onChange={onTabClicked}
+                    variant="s"
                 >
                     <Tab label="History" />
                     <Tab label="Players" />

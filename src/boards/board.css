@@ -30,7 +30,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgb(3, 86, 141);
+  background: rgba(3, 86, 141, .6);
 }
 
 .playableCell2 {
@@ -40,7 +40,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgb(146, 7, 211);
+  background: rgba(146, 7, 211, .6);
 }
 
 .nplayable {
@@ -60,7 +60,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgba(241, 168, 241, 0.979);
+  background: rgba(241, 168, 241, 0.879);
 }
 
 .lastPlayedCell2 {
@@ -70,7 +70,7 @@
   justify-content: center;
   font-size: 14px;
   display: flex;
-  background: rgba(20, 76, 228, 0.932);
+  background: rgba(20, 76, 228, 0.832);
 }
 
 .l2Score {
