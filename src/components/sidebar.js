@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
+    // appBar: {
+    //     transition: theme.transitions.create(['margin', 'width'], {
+    //         easing: theme.transitions.easing.sharp,
+    //         duration: theme.transitions.duration.leavingScreen,
+    //     }),
+    // },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
@@ -59,14 +59,14 @@ const useStyles = makeStyles((theme) => ({
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
-        padding: theme.spacing(0, 1),
+        //padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
     },
     content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
+        //flexGrow: 1,
+        //padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -118,13 +118,13 @@ export default function PersistentDrawerLeft(type) {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar
+            {/* <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
                     [classes.appBarShift]: open,
                 })}
-            >
-                <Toolbar>
+            > */}
+                {/* <Toolbar> */}
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -134,11 +134,8 @@ export default function PersistentDrawerLeft(type) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        TTTU
-                    </Typography>
-                </Toolbar>
-            </AppBar>
+                {/* </Toolbar> */}
+            {/* </AppBar> */}
             <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -156,7 +153,7 @@ export default function PersistentDrawerLeft(type) {
                 <Divider />
                 <List>
                     {itemsList.map((item, index) => {
-                        const { text, icon, onClick} = item;
+                        const { text, icon, onClick } = item;
                         return (
                             <ListItem button key={text} onClick={onClick}>
                                 {icon && <ListItemIcon>{icon}</ListItemIcon>}
