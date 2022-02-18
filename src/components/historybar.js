@@ -22,7 +22,13 @@ function Historybar(props) {
 
     const _renderBoards = () => {
         return props.board_hist.map(element => {
-            const string = '(' + element.l3 + ' , ' + element.l2 + ' , ' + element.l1 + ')'
+            let string = '(' + element.l3 + ' , ' + element.l2 + ' , ' + element.l1 + ')'
+            if (element.l3) {
+                string = '(' + element.l3 + ' , ' + element.l2 + ' , ' + element.l1 + ')'
+            }
+            else {
+                string = '(' + element.l2 + ' , ' + element.l1 + ')'
+            }
             return (<ListItem >
                 <ListItemText primary={string}>
                 </ListItemText>
@@ -45,13 +51,12 @@ function Historybar(props) {
 
     return (
         <div>
-            <Paper style={{ maxHeight: "50vh", overflow: 'auto',}}>
+            <Paper style={{ maxHeight: "50vh", overflow: 'auto' }}>
                 <Tabs
                     value={index}
                     indicatorColor="primary"
                     textColor="primary"
                     onChange={onTabClicked}
-                    variant="s"
                 >
                     <Tab label="History" />
                     <Tab label="Players" />
