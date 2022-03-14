@@ -15,7 +15,11 @@ class GameStage extends React.Component {
   }
 
   insertMove = (lastMove) => {
-    this.state.moveList.push(lastMove);
+    let newList = this.state.moveList;
+    newList.push(lastMove);
+    this.setState({
+      moveList: newList
+    });
     console.log(this.state.moveList);
   }
 
@@ -25,10 +29,10 @@ class GameStage extends React.Component {
         <SideBar />
         <Grid container direction="row" alignItems="stretch" justifyContent="space-between" spacing={3}>
           <Grid item >
-            <Game getLastMove={this.insertMove} />
+            <Game getLastMove={this.insertMove} onClick={() => console.log('clicked')} />
           </Grid>
           <Grid item>
-            <Historybar className="historybar" board_hist={this.state.moveList} /*player={this.state.player}*/ />
+            <Historybar className="historybar" board_hist={this.state.moveList}  />
           </Grid>
         </Grid>
       </div>
