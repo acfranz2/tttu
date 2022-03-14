@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PersistentDrawerLeft(type) {
+export default function SideBar(type) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
