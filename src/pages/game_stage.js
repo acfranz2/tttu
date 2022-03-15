@@ -35,13 +35,12 @@ class GameStage extends React.Component {
     return (
       <div>
         <SideBar />
-        <Grid container direction="row" alignItems="stretch" justifyContent="space-between" spacing={3}>
+        <Grid container direction="row" alignItems="stretch" justifyContent="center" spacing={4}>
           <Grid item >
             {this.getGame()}
-            {/* <Game getLastMove={this.insertMove} /> */}
           </Grid>
           <Grid item>
-            <Historybar className="historybar" board_hist={this.state.moveList}  />
+            <Historybar className="historybar" display="inline-block" board_hist={this.state.moveList}  />
           </Grid>
         </Grid>
       </div>

@@ -1,11 +1,11 @@
 .game {  
   background: Transparent;
-  position: absolute;
+  /* position: absolute; */
   display: inline-block;
-  left: -500px;
-  width: 1000px;
+  /* left: -500px; */
+  /* width: 1000px;
   height: 800px;
-  margin: 3% 50%;
+  margin: 3% 50%; */
 }
 
 .historybar {
