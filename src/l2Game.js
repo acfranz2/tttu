@@ -42,11 +42,14 @@ class L2Game extends React.Component {
         newPlayableL1[l1] = 1;
       }
 
+      let str = l2 + " " + l1;
+      this.props.getLastMove(str);
+
       this.setState({
         scoreL1: newScoreL1,
         scoreL2: newScoreL2,
         player: !this.state.player,
-	winner: newWinner,
+	      winner: newWinner,
         nplayable: this.state.nplayable,
         playablel1: newPlayableL1,
         lastPlayedl2: l2,

@@ -15,12 +15,19 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 export function game_settings_page() {
 
-    const [btnDisabled, setBtnDisabled] = React.useState(true)
+    const [btnDisabled, setBtnDisabled] = React.useState(true);
+    const [playDisabled, setPlayDisabled] = React.useState(true);
 
-    const [type, setType] = React.useState('');
+    const [type, setType] = React.useState(null);
 
     const handleType = (event, newType) => {
         setType(newType);
+        if(newType === null) {
+            setPlayDisabled(true);
+        }
+        else {
+            setPlayDisabled(false);
+        }
     }
 
     const [player, setPlayer] = React.useState('');
@@ -34,7 +41,7 @@ export function game_settings_page() {
 
     const handleMode = (event, newMode) => {
         setMode(newMode);
-        if (newMode == 'online') {
+        if (newMode === 'online') {
             setBtnDisabled(true);
             setPlayer('');
         }
@@ -112,10 +119,11 @@ export function game_settings_page() {
                             </ToggleButtonGroup>
                         </Grid>
                         <Grid item>
-                            <Link to="/game_stage" style={{ textDecoration: 'none' }}>
+                            <Link to={playDisabled ? '#' : {pathname: "/game_stage", state: {type}}} style={{ textDecoration: 'none' }} disabled={playDisabled}>
                                 <Button
                                     endIcon={<SportsEsportsIcon />}
-                                    color="secondary" >
+                                    color="secondary" 
+                                    disabled={playDisabled}>
                                     Play
                                 </Button>
                             </Link>

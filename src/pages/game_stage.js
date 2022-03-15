@@ -10,7 +10,8 @@ class GameStage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        moveList: []
+        moveList: [],
+        type: null
     };    
   }
 
@@ -20,7 +21,14 @@ class GameStage extends React.Component {
     this.setState({
       moveList: newList
     });
-    console.log(this.state.moveList);
+  }
+
+  getGame() {
+    let type = this.props.location.state.type;
+    if(type === 'Ultra')
+      return <Game getLastMove={this.insertMove} />
+    else if(type === 'Ultimate')
+      return <L2Game getLastMove={this.insertMove} />
   }
 
   render() {
@@ -29,7 +37,8 @@ class GameStage extends React.Component {
         <SideBar />
         <Grid container direction="row" alignItems="stretch" justifyContent="space-between" spacing={3}>
           <Grid item >
-            <Game getLastMove={this.insertMove} onClick={() => console.log('clicked')} />
+            {this.getGame()}
+            {/* <Game getLastMove={this.insertMove} /> */}
           </Grid>
           <Grid item>
             <Historybar className="historybar" board_hist={this.state.moveList}  />

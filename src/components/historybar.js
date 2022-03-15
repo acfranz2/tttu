@@ -29,7 +29,7 @@ function Historybar(props) {
             // else {
             //     string = '(' + element.l2 + ' , ' + element.l1 + ')'
             // }
-            return (<ListItem >
+            return (<ListItem key={element}>
                 <ListItemText primary={element}>
                 </ListItemText>
             </ListItem >)
@@ -38,7 +38,7 @@ function Historybar(props) {
 
     const Panel = (p) => (
         <div hidden={p.value !== p.index}>
-            <Typography>{p.children}</Typography>
+            <Paper>{p.children}</Paper>
         </div>
     )
 
