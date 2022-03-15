@@ -41,7 +41,7 @@ export default function Home() {
                 </ThemeProvider>
                 <ThemeProvider theme={buttons}>
                     <Box textAlign='center' padding={10} style={{}}>
-                        <Grid container direction={'column'} spacing="2" justify="center">
+                        <Grid container direction={'column'} spacing={2} justifyContent="center">
                             <Grid item>
                                 <Link to="/game_settings" style={{ textDecoration: 'none' }}>
                                     <Button
