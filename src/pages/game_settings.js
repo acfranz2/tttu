@@ -59,7 +59,7 @@ export function game_settings_page() {
                 </header>
 
                 <Box textAlign='center' m={5}>
-                    <Grid container direction={'column'} spacing={1} justify="center">
+                    <Grid container direction={'column'} spacing={1} justifyContent="center">
                         <Grid item >
                             <ToggleButtonGroup
                                 value={mode}
