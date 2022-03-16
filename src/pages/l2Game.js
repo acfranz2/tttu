@@ -1,5 +1,5 @@
 import React from 'react'
-import L2Board from './boards/l2Board'
+import L2Board from '../boards/l2Board'
 
 class L2Game extends React.Component {
   constructor(props) {
