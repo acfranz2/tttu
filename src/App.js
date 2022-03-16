@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Game from './pages/game'
 import Home from './pages/home'
 import game_settings_page from './pages/game_settings';
-import L2Game from './l2Game'
+import L2Game from './pages/l2Game'
 import game_stage from './pages/game_stage';
 
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import SideBar from '../components/sidebar'
-import L2Game from '../l2Game.js'
+import L2Game from './l2Game.js'
 import Game from './game.js'
 import Historybar from '../components/historybar';
 import Grid from '@material-ui/core/Grid';
