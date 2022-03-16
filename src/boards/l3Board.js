@@ -35,6 +35,7 @@ class L3Board extends React.Component {
             lastPlayedl1={lp1}
             currl2={cp2}
             currl1={cp1}
+            size={this.props.size}
           />
         </table>
       );

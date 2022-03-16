@@ -27,34 +27,38 @@ class L2Board extends React.Component {
             player={this.props.player}
             lastPlayedl1={lp1}
             currl1={cp1}
+            size={this.props.size}
           />
         </table>
       );
-    else
+    else {
+      console.log("l2Score l2Score-"+this.props.size);
       return (
-        <div className="l2Score">
+        <div className={"l2Score l2Score-"+this.props.size}>
           {this.props.scoreL2[l2]}
         </div>
       );
+    }
   }
 
   render() {
+    let size = this.props.size === 'l2' ? '-l2' : '';
     return (
       <tbody>
         <tr>
-          <td id={"cellL20"}>{this.renderL1Board(0)}</td>
-          <td id={"cellL21"}>{this.renderL1Board(1)}</td>
-          <td id={"cellL22"}>{this.renderL1Board(2)}</td>
+          <td id={"cellL20" + size}>{this.renderL1Board(0)}</td>
+          <td id={"cellL21" + size}>{this.renderL1Board(1)}</td>
+          <td id={"cellL22" + size}>{this.renderL1Board(2)}</td>
         </tr>
         <tr>
-          <td id={"cellL23"}>{this.renderL1Board(3)}</td>
-          <td id={"cellL24"}>{this.renderL1Board(4)}</td>
-          <td id={"cellL25"}>{this.renderL1Board(5)}</td>
+          <td id={"cellL23" + size}>{this.renderL1Board(3)}</td>
+          <td id={"cellL24" + size}>{this.renderL1Board(4)}</td>
+          <td id={"cellL25" + size}>{this.renderL1Board(5)}</td>
         </tr>
         <tr>
-          <td id={"cellL26"}>{this.renderL1Board(6)}</td>
-          <td id={"cellL27"}>{this.renderL1Board(7)}</td>
-          <td id={"cellL28"}>{this.renderL1Board(8)}</td>
+          <td id={"cellL26" + size}>{this.renderL1Board(6)}</td>
+          <td id={"cellL27" + size}>{this.renderL1Board(7)}</td>
+          <td id={"cellL28" + size}>{this.renderL1Board(8)}</td>
         </tr>
       </tbody>
     );

@@ -9,13 +9,22 @@
 }
 
 .cell {
-  height: 20px;
-  width: 20px;
   border: none;
   justify-content: center;
-  font-size: 14px;
   display: flex;
   background: Transparent;
+}
+
+.l3 {
+  height: 20px;
+  width: 20px;
+  font-size: 14px;
+}
+
+.l2 {
+  height: 66px;
+  width: 66px;
+  font-size: 42px;
 }
 
 .hovered {
@@ -23,62 +32,59 @@
 }
 
 .playableCell1 {
-  height: 20px;
-  width: 20px;
   border: none;
   justify-content: center;
-  font-size: 14px;
   display: flex;
   background: rgba(3, 86, 141, .6);
 }
 
 .playableCell2 {
-  height: 20px;
-  width: 20px;
   border: none;
   justify-content: center;
-  font-size: 14px;
   display: flex;
   background: rgba(146, 7, 211, .6);
 }
 
 .nplayable {
-  height: 20px;
-  width: 20px;
   border: none;
   justify-content: center;
-  font-size: 14px;
   display: flex;
   background: rgb(211, 211, 211);
 }
 
+
 .lastPlayedCell1 {
-  height: 20px;
-  width: 20px;
   border: none;
   justify-content: center;
-  font-size: 14px;
   display: flex;
   background: rgba(241, 168, 241, 0.879);
 }
 
 .lastPlayedCell2 {
-  height: 20px;
-  width: 20px;
   border: none;
   justify-content: center;
-  font-size: 14px;
   display: flex;
   background: rgba(20, 76, 228, 0.832);
 }
 
+
 .l2Score {
+  justify-content: center;
+  display: flex
+}
+
+.l2Score-l3 {
   height: 62px;
   width: 62px;
   line-height: 60px;
-  justify-content: center;
   font-size: 56px;
-  display: flex
+}
+
+.l2Score-l2 {
+  height: 202px;
+  width: 202px;
+  line-height: 180px;
+  font-size: 168px;
 }
 
 .l3Score {
@@ -94,8 +100,6 @@
   vertical-align: middle;
   font: bold 12px sans-serif;
   border-collapse: collapse;
-  height: 33.33%;
-  width: 33.33%;
 }
 
 .l1table::before {
@@ -153,5 +157,30 @@ td#cellL30, td#cellL31, td#cellL33, td#cellL34, td#cellL36, td#cellL37 {
 }
 
 td#cellL30, td#cellL31, td#cellL32, td#cellL33, td#cellL34, td#cellL35, #cellL36, td#cellL37, td#cellL38 {
+  padding: 3px;
+}
+
+/*for l2game*/
+td#cellL10-l2, td#cellL11-l2, td#cellL12-l2, td#cellL13-l2, td#cellL14-l2, td#cellL15-l2 {
+  border-bottom: 2px solid #930;
+}
+
+td#cellL10-l2, td#cellL11-l2, td#cellL13-l2, td#cellL14-l2, td#cellL16-l2, td#cellL17-l2 {
+  border-right: 2px solid #930;
+}
+
+td#cellL10-l2, td#cellL11-l2, td#cellL12-l2, td#cellL13-l2, td#cellL14-l2, td#cellL15-l2, #cellL16-l2, td#cellL17-l2, td#cellL18-l2 {
+   padding: 0px;
+}
+
+td#cellL20-l2, td#cellL21-l2, td#cellL22-l2, td#cellL23-l2, td#cellL24-l2, td#cellL25-l2 {
+  border-bottom: 3px solid #930;
+}
+
+td#cellL20-l2, td#cellL21-l2, td#cellL23-l2, td#cellL24-l2, td#cellL26-l2, td#cellL27-l2 {
+  border-right: 3px solid #930;
+}
+
+td#cellL20-l2, td#cellL21-l2, td#cellL22-l2, td#cellL23-l2, td#cellL24-l2, td#cellL25-l2, #cellL26-l2, td#cellL27-l2, td#cellL28-l2 {
   padding: 3px;
 }

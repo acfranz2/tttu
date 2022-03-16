@@ -92,7 +92,7 @@ class L2Game extends React.Component {
 
   render() {
     return (
-      <div className="game">
+      <div className="l2game">
         <table className="l2table">
           <L2Board scoreL1={this.state.scoreL1} scoreL2={this.state.scoreL2}
             onClick={(l1, l2) => this.handleClick(l1, l2)}
@@ -100,7 +100,8 @@ class L2Game extends React.Component {
             playablel2={this.state.playablel1} player={this.state.player}
             nplayable={this.state.nplayable}
             lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}
-            currl1={this.state.currl1} currl2={this.state.currl2} />
+            currl1={this.state.currl1} currl2={this.state.currl2} 
+            size={'l2'} />
         </table>
       </div>
     );

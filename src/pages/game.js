@@ -141,7 +141,8 @@ class Game extends React.Component {
             onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
             playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
             lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}
-            currl1={this.state.currl1} currl2={this.state.currl2} currl3={this.state.currl3}/>
+            currl1={this.state.currl1} currl2={this.state.currl2} currl3={this.state.currl3}
+            size={'l3'} />
         </table>
       </div>
     );

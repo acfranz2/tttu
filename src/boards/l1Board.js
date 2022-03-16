@@ -27,17 +27,25 @@ class L1Board extends React.Component {
       else {
         cellType = "playableCell2";
       }
-
-      if (this.props.currl1 === l1) {
-        cellType += " hovered"
-      }
     }
     else if (this.props.nplayable) {
       cellType = "nplayable";
     }
 
+    if(this.props.size === 'l3') {
+      cellType += " l3";
+    }
+    else if(this.props.size === 'l2') {
+      cellType += " l2";
+    }
+
+    if (this.props.playable && this.props.currl1 === l1) {
+      cellType += " hovered"
+    }
+
+    let size = this.props.size === 'l2' ? '-l2' : '';
     return (
-      <td id={"cellL1" + l1}>
+      <td id={"cellL1" + l1 + size}>
         <button
           className={cellType}
           onClick={() => this.props.onClick(l1)}
