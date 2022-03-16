@@ -3,9 +3,12 @@ import './board.css'
 
 class L1Board extends React.Component {
   renderCell(l1) {
-    //console.log(this.props.score);
-
     let cellType = "cell";
+    let cellData = this.props.scoreL1[l1];
+
+    if (this.props.currl1 === l1) {
+      cellData = this.props.player ? 'X' : 'O';
+    }
 
     // check to see if cell is in next playable area
     // check to see if cell was just played
@@ -24,19 +27,23 @@ class L1Board extends React.Component {
       else {
         cellType = "playableCell2";
       }
+
+      if (this.props.currl1 === l1) {
+        cellType += " hovered"
+      }
     }
-    else if(this.props.nplayable) { 
+    else if (this.props.nplayable) {
       cellType = "nplayable";
     }
 
     return (
       <td id={"cellL1" + l1}>
-	<button
+        <button
           className={cellType}
           onClick={() => this.props.onClick(l1)}
-	  onMouseEnter={() => this.props.onMouseEnter(l1)}>
-          {this.props.scoreL1[l1]}
-	</button>
+          onMouseEnter={() => this.props.onMouseEnter(l1)}>
+          {cellData}
+        </button>
       </td>
     );
   }

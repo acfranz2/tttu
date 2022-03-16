@@ -21,15 +21,13 @@ class Game extends React.Component {
       lastPlayedl3: -1,
       lastPlayedl2: -1,
       lastPlayedl1: -1,
-      board_hist: []
+      currl1: -1,
+      currl2: -1,
+      currl3: -1
     };
   }
 
   handleClick(l1, l2, l3) {
-    //console.log(this.state.playablel2 + ', ' + l1);
-    //console.log(this.state.playablel3 + ', ' + l2);
-
-
     if (this.state.playablel2[l3][l2] && !this.state.scoreL1[l3][l2][l1]) {
       const newScoreL1 = this.state.scoreL1;
       const newScoreL2 = this.state.scoreL2;
@@ -37,8 +35,6 @@ class Game extends React.Component {
       const newPlayableL2 = Array(9).fill(null).map(() => Array(9).fill(null));
 
       newScoreL1[l3][l2][l1] = this.state.player ? "X" : "O";
-
-      //console.log(l3 + 1, l2 + 1, l1 + 1);
 
       newScoreL2[l3][l2] = checkScore(newScoreL1[l3][l2]);
       newScoreL3[l3] = checkScore(newScoreL2[l3]);
@@ -66,7 +62,6 @@ class Game extends React.Component {
           newPlayableL2[l2][l1] = 1;
         }
       }
-      this.state.board_hist.push({ "l3": l3, "l2": l2, "l1": l1 })
       let str = l3 + " " + l2 + " " + l1;
       this.props.getLastMove(str);
 
@@ -75,36 +70,43 @@ class Game extends React.Component {
         scoreL2: newScoreL2,
         scoreL3: newScoreL3,
         player: !this.state.player,
-        nplayable: this.state.nplayable,
         playablel2: newPlayableL2,
         lastPlayedl3: l3,
         lastPlayedl2: l2,
-        lastPlayedl1: l1
+        lastPlayedl1: l1,
+        currl3: -1,
+        currl2: -1,
+        currl1: -1
       });
-
     }
-
   }
 
   handleHover(l1, l2, l3) {
+    const newNPlayable = Array(9).fill(null).map(() => Array(9).fill(null));
     if (this.state.playablel2[l3][l2] && !this.state.scoreL1[l3][l2][l1]) {
-      const newNPlayable = Array(9).fill(null).map(() => Array(9).fill(null));
+      let scoreL1 = JSON.parse(JSON.stringify(this.state.scoreL1));
+      let scoreL2 = JSON.parse(JSON.stringify(this.state.scoreL2));
+      let scoreL3 = JSON.parse(JSON.stringify(this.state.scoreL3));
+      
+      scoreL1[l3][l2][l1] = this.state.player ? "X" : "O";
+      scoreL2[l3][l2] = checkScore(scoreL1[l3][l2]);
+      scoreL3[l3] = checkScore(scoreL2[l3]);
 
-      if (this.state.scoreL3[l2]) {
+      if (scoreL3[l2]) {
         for (let i = 0; i < 9; i++) {
-          if (this.state.scoreL3[i])
+          if (scoreL3[i])
             continue;
           for (let j = 0; j < 9; j++) {
-            if (!this.state.scoreL2[i][j]) {
+            if (!scoreL2[i][j]) {
               newNPlayable[i][j] = 1;
             }
           }
         }
       }
       else {
-        if (this.state.scoreL2[l2][l1]) {
+        if (scoreL2[l2][l1]) {
           for (let i = 0; i < 9; i++) {
-            if (i !== l1 && !this.state.scoreL2[l2][i]) {
+            if (i !== l1 && !scoreL2[l2][i]) {
               newNPlayable[l2][i] = 1;
             }
           }
@@ -115,15 +117,18 @@ class Game extends React.Component {
       }
 
       this.setState({
-        scoreL1: this.state.scoreL1,
-        scoreL2: this.state.scoreL2,
-        scoreL3: this.state.scoreL3,
-        player: this.state.player,
-        playablel2: this.state.playablel2,
-        lastPlayedl3: this.state.lastPlayedl3,
-        lastPlayedl2: this.state.lastPlayedl2,
-        lastPlayedl1: this.state.lastPlayedl1,
-        nplayable: newNPlayable
+        nplayable: newNPlayable,
+        currl3: l3,
+        currl2: l2,
+        currl1: l1
+      });
+    }
+    else {
+      this.setState({
+        nplayable: newNPlayable,
+        currl3: -1,
+        currl2: -1,
+        currl1: -1
       });
     }
   }
@@ -131,19 +136,13 @@ class Game extends React.Component {
   render() {
     return (
       <div className="game">
-        {/* <Grid container direction="row" alignItems="stretch" justifyContent="space-between" spacing={3}>
-          <Grid item > */}
-            <table className="l3table">
-              <L3Board scoreL1={this.state.scoreL1} scoreL2={this.state.scoreL2} scoreL3={this.state.scoreL3} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
-                onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
-                playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
-                lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}/>
-            </table>
-	        {/* </Grid>
-          <Grid item >
-            <Historybar className="historybar" board_hist={this.state.board_hist} player={this.state.player}/>
-          </Grid>
-        </Grid> */}
+        <table className="l3table">
+          <L3Board scoreL1={this.state.scoreL1} scoreL2={this.state.scoreL2} scoreL3={this.state.scoreL3} onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
+            onMouseEnter={(l1, l2, l3) => this.handleHover(l1, l2, l3)}
+            playablel2={this.state.playablel2} nplayable={this.state.nplayable} player={this.state.player}
+            lastPlayedl3={this.state.lastPlayedl3} lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}
+            currl1={this.state.currl1} currl2={this.state.currl2} currl3={this.state.currl3}/>
+        </table>
       </div>
     );
   }

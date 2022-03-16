@@ -1,11 +1,6 @@
 .game {  
   background: Transparent;
-  /* position: absolute; */
   display: inline-block;
-  /* left: -500px; */
-  /* width: 1000px;
-  height: 800px;
-  margin: 3% 50%; */
 }
 
 .historybar {
@@ -21,6 +16,10 @@
   font-size: 14px;
   display: flex;
   background: Transparent;
+}
+
+.hovered {
+  color: rgba(0, 0, 0, .4);
 }
 
 .playableCell1 {
