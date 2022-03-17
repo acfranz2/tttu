@@ -44,13 +44,14 @@ class L1Board extends React.Component {
     }
 
     let size = this.props.size === 'l2' ? '-l2' : '';
+    let marg = this.props.size === 'l2' ? '8px' : '1px';
     return (
       <td id={"cellL1" + l1 + size}>
         <button
           className={cellType}
           onClick={() => this.props.onClick(l1)}
           onMouseEnter={() => this.props.onMouseEnter(l1)}>
-          {cellData}
+          <p style={{margin: marg}}>{cellData}</p>
         </button>
       </td>
     );
