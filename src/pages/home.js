@@ -54,13 +54,15 @@ export default function Home() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Button
-                                    endIcon={<HelpIcon />}
-                                    color="primary" 
-                                    style={{maxWidth: "220px", maxHeight: "40px", minWidth: "220px", minHeight: "40px", fontWeight: 600}} 
-                                    >
-                                    How To Play
-                                </Button>
+                                <Link to="/instructions" style={{ textDecoration: 'none' }}>
+                                    <Button
+                                        endIcon={<HelpIcon />}
+                                        color="primary" 
+                                        style={{maxWidth: "220px", maxHeight: "40px", minWidth: "220px", minHeight: "40px", fontWeight: 600}} 
+                                        >
+                                        How To Play
+                                    </Button>
+                                </Link>
                             </Grid>
 
                         </Grid>
