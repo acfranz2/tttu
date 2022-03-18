@@ -3,9 +3,12 @@ import './board.css'
 
 class L1Board extends React.Component {
   renderCell(l1) {
-    //console.log(this.props.score);
-
     let cellType = "cell";
+    let cellData = this.props.scoreL1[l1];
+
+    if (this.props.currl1 === l1) {
+      cellData = this.props.player ? 'X' : 'O';
+    }
 
     // check to see if cell is in next playable area
     // check to see if cell was just played
@@ -25,18 +28,31 @@ class L1Board extends React.Component {
         cellType = "playableCell2";
       }
     }
-    else if(this.props.nplayable) { 
+    else if (this.props.nplayable) {
       cellType = "nplayable";
     }
 
+    if(this.props.size === 'l3') {
+      cellType += " l3";
+    }
+    else if(this.props.size === 'l2') {
+      cellType += " l2";
+    }
+
+    if (this.props.playable && this.props.currl1 === l1) {
+      cellType += " hovered"
+    }
+
+    let size = this.props.size === 'l2' ? '-l2' : '';
+    let marg = this.props.size === 'l2' ? '8px' : '1px';
     return (
-      <td id={"cellL1" + l1}>
-	<button
+      <td id={"cellL1" + l1 + size}>
+        <button
           className={cellType}
           onClick={() => this.props.onClick(l1)}
-	  onMouseEnter={() => this.props.onMouseEnter(l1)}>
-          {this.props.scoreL1[l1]}
-	</button>
+          onMouseEnter={() => this.props.onMouseEnter(l1)}>
+          <p style={{margin: marg}}>{cellData}</p>
+        </button>
       </td>
     );
   }

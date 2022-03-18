@@ -5,22 +5,24 @@ import './board.css'
 class L3Board extends React.Component {
 
   renderL2Board(l3) {
-    //const arr = 
-    //for(var i = 0; i < 9; i++) {
-    //  for(var j = 0; j < 9; j++) {
 
     let lp2 = -1;
     let lp1 = -1;
+    let cp2 = -1;
+    let cp1 = -1;
 
     if (l3 === this.props.lastPlayedl3) {
       lp2 = this.props.lastPlayedl2;
       lp1 = this.props.lastPlayedl1;
-
+    }
+    if (l3 === this.props.currl3) {
+      cp2 = this.props.currl2;
+      cp1 = this.props.currl1;
     }
 
-    if(this.props.scoreL3[l3] === "drawn" || this.props.scoreL3[l3] === null)
+    if (this.props.scoreL3[l3] === "drawn" || this.props.scoreL3[l3] === null)
       return (
-	<table className={"l2table"}>
+        <table className={"l2table"}>
           <L2Board
             scoreL1={this.props.scoreL1[l3]}
             scoreL2={this.props.scoreL2[l3]}
@@ -31,14 +33,17 @@ class L3Board extends React.Component {
             player={this.props.player}
             lastPlayedl2={lp2}
             lastPlayedl1={lp1}
+            currl2={cp2}
+            currl1={cp1}
+            size={this.props.size}
           />
-	</table>
-      );	
+        </table>
+      );
     else
       return (
         <div className="l3Score">
-	  {this.props.scoreL3[l3]}
-	</div>
+          {this.props.scoreL3[l3]}
+        </div>
       );
   }
 
@@ -46,21 +51,21 @@ class L3Board extends React.Component {
 
     return (
       <tbody>
-	<tr>
+        <tr>
           <td id={"cellL30"}>{this.renderL2Board(0)}</td>
           <td id={"cellL31"}>{this.renderL2Board(1)}</td>
-	  <td id={"cellL32"}>{this.renderL2Board(2)}</td>
+          <td id={"cellL32"}>{this.renderL2Board(2)}</td>
         </tr>
-	<tr>
-	  <td id={"cellL33"}>{this.renderL2Board(3)}</td>
-	  <td id={"cellL34"}>{this.renderL2Board(4)}</td>
-	  <td id={"cellL35"}>{this.renderL2Board(5)}</td>
-	</tr>
-	<tr>
+        <tr>
+          <td id={"cellL33"}>{this.renderL2Board(3)}</td>
+          <td id={"cellL34"}>{this.renderL2Board(4)}</td>
+          <td id={"cellL35"}>{this.renderL2Board(5)}</td>
+        </tr>
+        <tr>
           <td id={"cellL36"}>{this.renderL2Board(6)}</td>
-	  <td id={"cellL37"}>{this.renderL2Board(7)}</td>
-	  <td id={"cellL38"}>{this.renderL2Board(8)}</td>
-	</tr> 
+          <td id={"cellL37"}>{this.renderL2Board(7)}</td>
+          <td id={"cellL38"}>{this.renderL2Board(8)}</td>
+        </tr>
       </tbody>
     );
   }

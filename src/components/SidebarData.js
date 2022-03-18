@@ -12,7 +12,7 @@ export const SidebarData = [
 },
 {
     title: 'Game',
-    path: '/game',
+    path: '/game_stage',
     icon: <AIcons.AiFillCrown />,
     cName: 'nav-text'
 },

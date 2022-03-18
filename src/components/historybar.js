@@ -21,19 +21,26 @@ import { FixedSizeList } from 'react-window';
 
 function Historybar(props) {
 
-    const _renderMove = () => {
-        return props.board_hist.map(element=> {
-            return (
-                <ListItem button>
-                    <ListItemText primary={element}>
-                    </ListItemText>
-                </ListItem >);
-        });
+    const _renderBoards = () => {
+        return props.board_hist.map(element => {
+            let coords = element.split(' ');
+            let val = "";
+            if(coords.length === 2) {
+                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ")"
+            }
+            else {
+                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ", " + (parseInt(coords[2]) + 1) + ")"
+            }
+            return (<ListItem key={element}>
+                <ListItemText primary={val}>
+                </ListItemText>
+            </ListItem >)
+        })
     }
 
     const Panel = (p) => (
         <div hidden={p.value !== p.index}>
-            <Typography>{p.children}</Typography>
+            <Paper>{p.children}</Paper>
         </div>
     )
 

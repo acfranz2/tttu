@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box'
+import { ThemeProvider, createTheme } from '@material-ui/core';
 
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import HelpIcon from '@material-ui/icons/Help';
@@ -16,45 +17,57 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+const title = createTheme({
+    typography: {
+        fontFamily: "Rowdies"
+    }
+});
+
+const buttons = createTheme({
+    typography: {
+        fontSize: 20,
+    },
+});
+
 export default function Home() {
     return (
         <Container>
-            <div>
-                <header className='heading'>
-                    <Typography variant="h1">
+            <div style={{display: "flex", justifyContent: "center", alignItems: "center", textAlign: "center", minHeight: "100vh"}}>
+                
+                <ThemeProvider theme={title}>
+                    <Typography variant="h1" align="center">
                         TicTacToeUltra
                     </Typography>
-                </header>
+                </ThemeProvider>
+                <ThemeProvider theme={buttons}>
+                    <Box textAlign='center' padding={10} style={{}}>
+                        <Grid container direction={'column'} spacing={2} justifyContent="center">
+                            <Grid item>
+                                <Link to="/game_settings" style={{ textDecoration: 'none' }}>
+                                    <Button
+                                        endIcon={<SportsEsportsIcon />}
+                                        color="secondary"
+                                        style={{maxWidth: "220px", maxHeight: "40px", minWidth: "220px", minHeight: "40px", fontWeight: 600}} 
+                                        >
+                                        Play
+                                    </Button>
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link to="/instructions" style={{ textDecoration: 'none' }}>
+                                    <Button
+                                        endIcon={<HelpIcon />}
+                                        color="primary" 
+                                        style={{maxWidth: "220px", maxHeight: "40px", minWidth: "220px", minHeight: "40px", fontWeight: 600}} 
+                                        >
+                                        How To Play
+                                    </Button>
+                                </Link>
+                            </Grid>
 
-                {/* <AppBar>
-                        <Toolbar>
-                            <IconButton>
-                                <MenuIcon />
-                            </IconButton>
-                        </Toolbar>
-                    </AppBar> */}
-
-                <Box textAlign='center' >
-                    <Grid container direction={'column'} spacing="4" justify="center">
-                        <Grid item>
-                            <Link to="/game_settings" style={{ textDecoration: 'none' }}>
-                                <Button
-                                    endIcon={<SportsEsportsIcon />}
-                                    color="secondary" >
-                                    Play
-                                </Button>
-                            </Link>
                         </Grid>
-                        <Grid item>
-                            <Button
-                                endIcon={<HelpIcon />}
-                                color="primary" >
-                                How To Play
-                            </Button>
-                        </Grid>
-
-                    </Grid>
-                </Box>
+                    </Box>
+                </ThemeProvider>
             </div>
         </Container >
     )
