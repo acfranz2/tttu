@@ -24,11 +24,14 @@ function Historybar(props) {
         return props.board_hist.map(element => {
             let coords = element.split(' ');
             let val = "";
-            if(coords.length === 2) {
-                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ")"
+            if(coords.length === 1) {
+                val = "(" + (parseInt(coords[0]) + 1) + ")";
+            }
+            else if(coords.length === 2) {
+                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ")";
             }
             else {
-                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ", " + (parseInt(coords[2]) + 1) + ")"
+                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ", " + (parseInt(coords[2]) + 1) + ")";
             }
             return (<ListItem key={element}>
                 <ListItemText primary={val}>

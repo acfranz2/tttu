@@ -1,7 +1,8 @@
 import React from 'react'
 import SideBar from '../components/sidebar'
-import L2Game from './l2Game.js'
-import Game from './game.js'
+import L1Game from './l1Game';
+import L2Game from './l2Game.js';
+import Game from './game.js';
 import Historybar from '../components/historybar';
 import Grid from '@material-ui/core/Grid';
 
@@ -26,9 +27,11 @@ class GameStage extends React.Component {
   getGame() {
     let type = this.props.location.state.type;
     if(type === 'Ultra')
-      return <Game getLastMove={this.insertMove} />
+      return <Game getLastMove={this.insertMove} />;
     else if(type === 'Ultimate')
-      return <L2Game getLastMove={this.insertMove} />
+      return <L2Game getLastMove={this.insertMove} />;
+    else 
+      return <L1Game getLastMove={this.insertMove} />;
   }
 
   render() {

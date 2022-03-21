@@ -87,6 +87,11 @@ export function game_settings_page() {
                                 aria-label="text alignment">
                                 <ToggleButton
                                     color="primary"
+                                    value="Classic" >
+                                    Classic
+                                </ToggleButton>
+                                <ToggleButton
+                                    color="primary"
                                     value="Ultimate" >
                                     Ultimate
                                 </ToggleButton>

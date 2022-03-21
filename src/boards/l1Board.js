@@ -38,13 +38,18 @@ class L1Board extends React.Component {
     else if(this.props.size === 'l2') {
       cellType += " l2";
     }
+    else {
+      cellType += " l1";
+    }
 
-    if (this.props.playable && this.props.currl1 === l1) {
+    if ((this.props.size === 'l1' && !this.props.scoreL1[l1]) || (this.props.playable && this.props.currl1 === l1)) {
       cellType += " hovered"
     }
 
-    let size = this.props.size === 'l2' ? '-l2' : '';
-    let marg = this.props.size === 'l2' ? '8px' : '1px';
+    let size = this.props.size === 'l1' ? '-l1' : 
+               (this.props.size === 'l1') ? '-l2' : '';
+    let marg = this.props.size === 'l1' ? '24px' : 
+               (this.props.size === 'l2') ? '8px' : '1px';
     return (
       <td id={"cellL1" + l1 + size}>
         <button

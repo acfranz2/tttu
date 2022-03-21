@@ -27,6 +27,12 @@
   font-size: 42px;
 }
 
+.l1 {
+  height: 198px;
+  width: 198px;
+  font-size: 126px;
+}
+
 .hovered {
   color: rgba(0, 0, 0, .4);
 }
@@ -100,6 +106,7 @@
   vertical-align: middle;
   font: bold 12px sans-serif;
   border-collapse: collapse;
+  text-align: center;
 }
 
 .l1table::before {
@@ -183,4 +190,17 @@ td#cellL20-l2, td#cellL21-l2, td#cellL23-l2, td#cellL24-l2, td#cellL26-l2, td#ce
 
 td#cellL20-l2, td#cellL21-l2, td#cellL22-l2, td#cellL23-l2, td#cellL24-l2, td#cellL25-l2, #cellL26-l2, td#cellL27-l2, td#cellL28-l2 {
   padding: 3px;
+}
+
+/*for l1game*/
+td#cellL10-l1, td#cellL11-l1, td#cellL12-l1, td#cellL13-l1, td#cellL14-l1, td#cellL15-l1 {
+  border-bottom: 3px solid #930;
+}
+
+td#cellL10-l1, td#cellL11-l1, td#cellL13-l1, td#cellL14-l1, td#cellL16-l1, td#cellL17-l1 {
+  border-right: 3px solid #930;
+}
+
+td#cellL10-l1, td#cellL11-l1, td#cellL12-l1, td#cellL13-l1, td#cellL14-l1, td#cellL15-l1, #cellL16-l1, td#cellL17-l1, td#cellL18-l1 {
+   padding: 3px;
 }
