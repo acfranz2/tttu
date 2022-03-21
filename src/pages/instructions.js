@@ -116,7 +116,7 @@ export default function Instructions() {
                             Drawn Game
                         </Typography>
                         <div style={{display: 'flex', justifyContent: 'left', gap:'10px'}}>
-                            {renderL1Board(['O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O'])}
+                            {renderL1Board(['O', 'X', 'O', 'O', 'X', 'O', 'X', 'O', 'X'])}
                             {renderL1Board(['X', 'X', 'O', 'O', 'X', 'X', 'X', 'O', 'O'])}
                             {renderL1Board(['X', 'O', 'X', 'X', 'O', 'O', 'O', 'X', 'X'])}
                         </div>
