@@ -12,9 +12,6 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      scoreL1: Array(9).fill(null).map(() => Array(9).fill(null).map(() => Array(9).fill(null))),
-      scoreL2: Array(9).fill(null).map(() => Array(9).fill(null)),
-      scoreL3: Array(9).fill(null),
       player: true,
       playablel2: Array(9).fill(null).map(() => Array(9).fill(1)),
       nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
@@ -33,9 +30,9 @@ class Game extends React.Component {
       const newScoreL2 = this.state.scoreL2;
       const newScoreL3 = this.state.scoreL3;
       const newPlayableL2 = Array(9).fill(null).map(() => Array(9).fill(null));
+      const newStepNumber = this.state.stepNumber + 1;
 
       newScoreL1[l3][l2][l1] = this.state.player ? "X" : "O";
-
       newScoreL2[l3][l2] = checkScore(newScoreL1[l3][l2]);
       newScoreL3[l3] = checkScore(newScoreL2[l3]);
 
@@ -134,6 +131,8 @@ class Game extends React.Component {
   }
 
   render() {
+    const currBoard = this.state.board_hist[this.state.stepNumber];
+    const hist = this.state.board_hist.map((move) => {return move.move});
     return (
       <div className="game">
         <table className="l3table">
