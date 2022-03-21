@@ -1,29 +1,52 @@
 import React from 'react'
-import { Typography, Container, AppBar, Tabs, Tab} from '@material-ui/core'
+import { Typography, Container, AppBar, Tabs, Tab, Paper } from '@material-ui/core'
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import SideBar from '../components/sidebar';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import L1BoardInst from '../boards/l1BoardInst';
+import L2BoardInst from '../boards/l2BoardInst';
+import L3BoardInst from '../boards/l3BoardInst';
+import '../boards/board.css';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        background: 'transparent',
+        overflow: 'auto',
+        maxHeight: '750px'
+    }
+}));
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
+    const classes = useStyles();
+    const theme = useTheme();
+
     return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`wrapped-tabpanel-${index}`}
-        aria-labelledby={`wrapped-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Box p={3}>
-            <Typography>{children}</Typography>
-          </Box>
-        )}
-      </div>
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`wrapped-tabpanel-${index}`}
+            aria-labelledby={`wrapped-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Paper className={classes.root} elevation={0}>{children}</Paper>
+                </Box>
+            )}
+        </div>
     );
 }
-  
+
+function renderL1Board(score) {
+    return (<div className="l1game">
+                <table className="l1table">
+                    <L1BoardInst scoreL1={score} />
+                </table>
+            </div>);
+}
+
 TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
@@ -56,31 +79,51 @@ export default function Instructions() {
                         <Typography variant="h3">
                             L1 Board
                         </Typography>
-                        <img src='/../tttu_images/L1Board.PNG' alt='L1Board' width="400" height="400" />
+                        {renderL1Board(Array(9).fill(null))}
                         <Typography variant="h3">
                             L2 Board
                         </Typography>
-                        <img></img>
+                        <div className="l2game">
+                            <table className="l2table">
+                                <L2BoardInst />
+                            </table>
+                        </div>
                         <Typography variant="h3">
                             L3 Board
                         </Typography>
-                        <img></img>
+                        <div className="l3game">
+                            <table className="l3table">
+                                <L3BoardInst />
+                            </table>
+                        </div>
                         <Typography variant="h3">
                             Cell
                         </Typography>
-                        <img></img>
+                        <div>
+                            <table className="l2table">
+                                <L2BoardInst highlight={true} />
+                            </table>
+                        </div>
                         <Typography variant="h3">
                             Won Game
                         </Typography>
-                        <img></img>
+                        <div style={{display: 'flex', justifyContent: 'left', gap:'10px'}}>
+                            {renderL1Board(['O', 'O', 'O', null, null, null, null, null, null])}
+                            {renderL1Board(['X', null, null, null, 'X', null, null, null, 'X'])}
+                            {renderL1Board([null, 'O', null, null, 'O', null, null, 'O', null])}
+                        </div>
                         <Typography variant="h3">
                             Drawn Game
                         </Typography>
-                        <img></img>
+                        <div style={{display: 'flex', justifyContent: 'left', gap:'10px'}}>
+                            {renderL1Board(['O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O'])}
+                            {renderL1Board(['X', 'X', 'O', 'O', 'X', 'X', 'X', 'O', 'O'])}
+                            {renderL1Board(['X', 'O', 'X', 'X', 'O', 'O', 'O', 'X', 'X'])}
+                        </div>
                         <Typography variant="h3">
                             Coordinates
                         </Typography>
-                        <img></img>
+                        {renderL1Board(['1', '2', '3', '4', '5', '6', '7', '8', '9'])}
                     </Container>
                 </TabPanel>
                 <TabPanel value={value} index={1}>

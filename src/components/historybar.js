@@ -17,7 +17,6 @@ import { Typography } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import { FixedSizeList } from 'react-window';
 
 function Historybar(props) {
 
@@ -25,11 +24,14 @@ function Historybar(props) {
         return props.board_hist.map(element => {
             let coords = element.split(' ');
             let val = "";
-            if(coords.length === 2) {
-                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ")"
+            if(coords.length === 1) {
+                val = "(" + (parseInt(coords[0]) + 1) + ")";
+            }
+            else if(coords.length === 2) {
+                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ")";
             }
             else {
-                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ", " + (parseInt(coords[2]) + 1) + ")"
+                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ", " + (parseInt(coords[2]) + 1) + ")";
             }
             return (<ListItem key={element}>
                 <ListItemText primary={val}>
@@ -52,23 +54,20 @@ function Historybar(props) {
     const color_2 = props.player ? "white" : "rgb(146, 7, 211)";
 
     return (
-        <div style={{width: "320px"}}>
-            <div>
+        <div>
+            <Paper style={{ maxHeight: "50vh", overflow: 'auto' }}>
                 <Tabs
                     value={index}
                     indicatorColor="primary"
                     textColor="primary"
                     onChange={onTabClicked}
-                    centered
                 >
                     <Tab label="History" />
                     <Tab label="Players" />
                 </Tabs>
-            </div>
-            <div>
                 <Panel value={index} index={0}>
-                    <List height={400} width={300} itemSize={46} itemCount={200}>
-                        {_renderMove()}
+                    <List>
+                        {_renderBoards()}
                     </List>
                 </Panel>
                 <Panel value={index} index={1}>
@@ -87,7 +86,8 @@ function Historybar(props) {
                         </CardContent>
                     </Card>
                 </Panel>
-            </div>
+
+            </Paper>
         </div>
     );
 
