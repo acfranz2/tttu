@@ -12,6 +12,9 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      scoreL1: Array(9).fill(null).map(() => Array(9).fill(null).map(() => Array(9).fill(null))),
+      scoreL2: Array(9).fill(null).map(() => Array(9).fill(null)),
+      scoreL3: Array(9).fill(null),
       player: true,
       playablel2: Array(9).fill(null).map(() => Array(9).fill(1)),
       nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
@@ -131,8 +134,8 @@ class Game extends React.Component {
   }
 
   render() {
-    const currBoard = this.state.board_hist[this.state.stepNumber];
-    const hist = this.state.board_hist.map((move) => {return move.move});
+    // const currBoard = this.state.board_hist[this.state.stepNumber];
+    // const hist = this.state.board_hist.map((move) => {return move.move});
     return (
       <div className="game">
         <table className="l3table">
