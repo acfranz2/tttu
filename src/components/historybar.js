@@ -24,6 +24,7 @@ function Historybar(props) {
         return props.board_hist.map(element => {
             let coords = element.split(' ');
             let val = "";
+
             if(coords.length === 1) {
                 val = "(" + (parseInt(coords[0]) + 1) + ")";
             }
@@ -40,11 +41,12 @@ function Historybar(props) {
         })
     }
 
-    const Panel = (p) => (
-        <div hidden={p.value !== p.index}>
-            <Paper>{p.children}</Paper>
-        </div>
-    )
+    const Panel = (p) => {
+        console.log(p);
+        return (<div hidden={p.value !== p.index}>
+            <Paper id='p' style={{maxHeight: '400px', display: 'flex', flexDirection: 'column-reverse', overflowY: 'auto'}}>{p.children}</Paper>
+        </div>);
+    };
 
     const [index, setIndex] = useState(0);
     const onTabClicked = (event, index) => {
@@ -55,7 +57,7 @@ function Historybar(props) {
 
     return (
         <div>
-            <Paper style={{ maxHeight: "50vh", overflow: 'auto' }}>
+            <Paper style={{ maxHeight: "50vh"}}>
                 <Tabs
                     value={index}
                     indicatorColor="primary"

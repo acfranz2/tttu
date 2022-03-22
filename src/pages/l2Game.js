@@ -49,6 +49,7 @@ class L2Game extends React.Component {
         scoreL2: newScoreL2,
         player: !this.state.player,
         winner: newWinner,
+        nplayable: Array(9).fill(null),
         playablel1: newPlayableL1,
         lastPlayedl2: l2,
         lastPlayedl1: l1,
