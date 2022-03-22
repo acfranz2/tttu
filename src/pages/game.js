@@ -72,6 +72,7 @@ class Game extends React.Component {
         scoreL3: newScoreL3,
         player: !this.state.player,
         playablel2: newPlayableL2,
+        nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
         lastPlayedl3: l3,
         lastPlayedl2: l2,
         lastPlayedl1: l1,

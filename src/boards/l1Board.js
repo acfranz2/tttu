@@ -14,11 +14,14 @@ class L1Board extends React.Component {
     // check to see if cell was just played
     if (this.props.lastPlayedl1 === l1) {
       if (this.props.player) {
-        cellType = "lastPlayedCell2";
-      }
-      else {
         cellType = "lastPlayedCell1";
       }
+      else {
+        cellType = "lastPlayedCell2";
+      }
+    }
+    else if (this.props.nplayable) {
+      cellType = "nplayable";
     }
     else if (this.props.playable) {
       if (this.props.player) {
@@ -27,9 +30,6 @@ class L1Board extends React.Component {
       else {
         cellType = "playableCell2";
       }
-    }
-    else if (this.props.nplayable) {
-      cellType = "nplayable";
     }
 
     if(this.props.size === 'l3') {
