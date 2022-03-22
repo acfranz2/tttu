@@ -6,6 +6,10 @@ class L1BoardInst extends React.Component {
     let cellType = "cell l3";
     let cellData = this.props.scoreL1[l1];
 
+    if(this.props.highlight && l1 === 6) {
+      cellType += ' highlight';
+    }
+
     let marg = '1px';
     return (
       <td id={"cellL1" + l1}>

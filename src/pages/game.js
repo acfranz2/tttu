@@ -1,10 +1,11 @@
 import React from 'react'
 import L3Board from '../boards/l3Board'
 import L2Board from '../boards/l2Board'
+import '../boards/board.css';
 import Historybar from '../components/historybar';
 import Navbar from '../components/Navbar';
 import Grid from '@material-ui/core/Grid';
-
+import ResetButton from '../components/ResetButton';
 
 
 
@@ -12,6 +13,9 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      scoreL1: Array(9).fill(null).map(() => Array(9).fill(null).map(() => Array(9).fill(null))),
+      scoreL2: Array(9).fill(null).map(() => Array(9).fill(null)),
+      scoreL3: Array(9).fill(null),
       player: true,
       playablel2: Array(9).fill(null).map(() => Array(9).fill(1)),
       nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
@@ -130,9 +134,32 @@ class Game extends React.Component {
     }
   }
 
+  reset() {
+    this.setState({
+      scoreL1: Array(9).fill(null).map(() => Array(9).fill(null).map(() => Array(9).fill(null))),
+      scoreL2: Array(9).fill(null).map(() => Array(9).fill(null)),
+      scoreL3: Array(9).fill(null),
+      player: true,
+      playablel2: Array(9).fill(null).map(() => Array(9).fill(1)),
+      nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
+      lastPlayedl3: -1,
+      lastPlayedl2: -1,
+      lastPlayedl1: -1,
+      currl1: -1,
+      currl2: -1,
+      currl3: -1
+    });
+  }
+
+  renderReset() {
+    if(this.props.practice) {
+      return <ResetButton reset={() => {this.reset()}}></ResetButton>;
+    }
+  }
+
   render() {
-    const currBoard = this.state.board_hist[this.state.stepNumber];
-    const hist = this.state.board_hist.map((move) => {return move.move});
+    // const currBoard = this.state.board_hist[this.state.stepNumber];
+    // const hist = this.state.board_hist.map((move) => {return move.move});
     return (
       <div className="game">
         <table className="l3table">
@@ -143,6 +170,7 @@ class Game extends React.Component {
             currl1={this.state.currl1} currl2={this.state.currl2} currl3={this.state.currl3}
             size={'l3'} />
         </table>
+        {this.renderReset()}
       </div>
     );
   }

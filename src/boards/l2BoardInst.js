@@ -6,7 +6,7 @@ class L2BoardInst extends React.Component {
 
   renderL1Board(l2) {
     let tableClass = "l1table";
-    if(this.props.highlight && l2 == 5) {
+    if(this.props.highlight && l2 === 5) {
       tableClass += " highlight";
     }
 

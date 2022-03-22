@@ -23,6 +23,18 @@
               -1px 1px 1px rgba(146, 7, 211, .6);
 }
 
+.l2game {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
 .l3 {
   height: 20px;
   width: 20px;

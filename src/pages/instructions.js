@@ -8,6 +8,8 @@ import L1BoardInst from '../boards/l1BoardInst';
 import L2BoardInst from '../boards/l2BoardInst';
 import L3BoardInst from '../boards/l3BoardInst';
 import '../boards/board.css';
+import L2Game from './l2Game';
+import Game from './game';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -99,7 +101,12 @@ export default function Instructions() {
                         <Typography variant="h3">
                             Cell
                         </Typography>
-                        <div>
+                        <div style={{display: 'flex', justifyContent: 'left', gap:'10px'}}>
+                            <div className='l1game'>
+                                <table className='l1table'>
+                                    <L1BoardInst scoreL1={Array(9).fill(null)} highlight={true} />
+                                </table>
+                            </div>
                             <table className="l2table">
                                 <L2BoardInst highlight={true} />
                             </table>
@@ -116,7 +123,7 @@ export default function Instructions() {
                             Drawn Game
                         </Typography>
                         <div style={{display: 'flex', justifyContent: 'left', gap:'10px'}}>
-                            {renderL1Board(['O', 'X', 'O', 'X', 'O', 'X', 'O', 'X', 'O'])}
+                            {renderL1Board(['O', 'X', 'O', 'O', 'X', 'O', 'X', 'O', 'X'])}
                             {renderL1Board(['X', 'X', 'O', 'O', 'X', 'X', 'X', 'O', 'O'])}
                             {renderL1Board(['X', 'O', 'X', 'X', 'O', 'O', 'O', 'X', 'X'])}
                         </div>
@@ -148,6 +155,9 @@ export default function Instructions() {
                         <Typography variant="body1">
                             Play continues in this manor until a game is won or drawn, then it gets interesting. If a player is ever sent to a won or drawn L1 game, they may play anywhere in the current playable area. The next player must then play once again in the corresponding cell of the L2 board. This is how every turn works when a player is sent to a won or drawn L1 game. Play continues until L2 game is won or drawn.
                         </Typography>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <L2Game practice={true} getLastMove={(str) => {}}/>
+                        </div>
                         <Typography variant="h2">
                             Ultra
                         </Typography>
@@ -170,6 +180,9 @@ export default function Instructions() {
                         <Typography>
                             Both events occur in the same way for the rest of the game.
                         </Typography>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <Game practice={true} getLastMove={(str) => {}}/>
+                        </div>
                     </Container>
                 </TabPanel>
             </Container>

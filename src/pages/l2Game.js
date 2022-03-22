@@ -1,5 +1,7 @@
 import React from 'react'
 import L2Board from '../boards/l2Board'
+import ResetButton from '../components/ResetButton';
+import '../boards/board.css';
 
 class L2Game extends React.Component {
   constructor(props) {
@@ -90,6 +92,27 @@ class L2Game extends React.Component {
     }
   }
 
+  reset() {
+    this.setState({
+      scoreL1: Array(9).fill(null).map(() => Array(9).fill(null)),
+      scoreL2: Array(9).fill(null),
+      player: true,
+      winner: null,
+      nplayable: Array(9).fill(null),
+      playablel1: Array(9).fill(1),
+      lastPlayedl2: -1,
+      lastPlayedl1: -1,
+      currl2: -1,
+      currl1: -1
+    });
+  }
+
+  renderReset() {
+    if(this.props.practice) {
+      return <ResetButton reset={() => {this.reset()}}></ResetButton>;
+    }
+  }
+
   render() {
     return (
       <div className="l2game">
@@ -101,8 +124,9 @@ class L2Game extends React.Component {
             nplayable={this.state.nplayable}
             lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}
             currl1={this.state.currl1} currl2={this.state.currl2} 
-            size={'l2'} />
+            size={this.props.practice ? 'l3' : 'l2'} />
         </table>
+        {this.renderReset()}
       </div>
     );
   }
