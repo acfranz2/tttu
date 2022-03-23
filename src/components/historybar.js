@@ -56,7 +56,7 @@ function Historybar(props) {
         return props.board_hist.map((element, index) => {
             if(element === '-1') {
                 return (
-                    <p style={{width: '21px', display: 'flex', justifyContent: 'center'}}>
+                    <p key={index} style={{width: '21px', display: 'flex', justifyContent: 'center'}}>
                         {((index / 3) + 1) + '.'}
                     </p>
                 );

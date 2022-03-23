@@ -34,7 +34,10 @@ class Game extends React.Component {
 
   handleClick(l1, l2, l3) {
     let gState = this.state.history[this.state.move];
-    if (gState.playablel2[l3][l2] && !gState.scoreL1[l3][l2][l1] && !gState.winner && this.state.move === this.props.currentMove) {
+    if (gState.playablel2[l3][l2] && !gState.scoreL1[l3][l2][l1] && !gState.winner) {
+      if(!this.props.practice && this.state.move !== this.props.currentMove) {
+        return;
+      }
       const newScoreL1 = JSON.parse(JSON.stringify(gState.scoreL1));
       const newScoreL2 = JSON.parse(JSON.stringify(gState.scoreL2));
       const newScoreL3 = JSON.parse(JSON.stringify(gState.scoreL3));
@@ -104,7 +107,10 @@ class Game extends React.Component {
   handleHover(l1, l2, l3) {
     let gState = this.state.history[this.state.move];
     const newNPlayable = Array(9).fill(null).map(() => Array(9).fill(null));
-    if (gState.playablel2[l3][l2] && !gState.scoreL1[l3][l2][l1] && !gState.winner && this.state.move === this.props.currentMove) {
+    if (gState.playablel2[l3][l2] && !gState.scoreL1[l3][l2][l1] && !gState.winner) {
+      if(!this.props.practice && this.state.move !== this.props.currentMove) {
+        return;
+      }
       const scoreL1 = JSON.parse(JSON.stringify(gState.scoreL1));
       const scoreL2 = JSON.parse(JSON.stringify(gState.scoreL2));
       const scoreL3 = JSON.parse(JSON.stringify(gState.scoreL3));
@@ -182,13 +188,19 @@ class Game extends React.Component {
   }
 
   render() {
-    let gState = this.state.history[this.props.currentMove];
+    let gState = null;
+    if(this.props.practice) {
+      gState = this.state.history[this.state.move];
+    }
+    else {
+      gState = this.state.history[this.props.currentMove];
 
-    if(this.props.currentMove !== this.state.move) {
-      this.state.nplayable = Array(9).fill(null).map(() => Array(9).fill(null));
-      this.state.currl1 = -1;
-      this.state.currl2 = -1;
-      this.state.currl3 = -1;
+      if(this.props.currentMove !== this.state.move) {
+        this.state.nplayable = Array(9).fill(null).map(() => Array(9).fill(null));
+        this.state.currl1 = -1;
+        this.state.currl2 = -1;
+        this.state.currl3 = -1;
+      }
     }
 
     return (

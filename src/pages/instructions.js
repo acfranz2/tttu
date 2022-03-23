@@ -11,6 +11,9 @@ import '../boards/board.css';
 import L2Game from './l2Game';
 import Game from './game';
 
+// let l2Move = 0;
+// let l3Move = 0;
+
 const useStyles = makeStyles((theme) => ({
     root: {
         background: 'transparent',
@@ -55,6 +58,15 @@ TabPanel.propTypes = {
     value: PropTypes.any.isRequired,
 };
 
+// function addMove(str, move) {
+//     if(str !== '-1')
+//         if(move === 2) {
+//             l2Move += 1;
+//         }
+//         else {
+//             l3Move += 1;
+//         }
+// }
 
 export default function Instructions() {
     const [value, setValue] = React.useState(0);
@@ -62,7 +74,6 @@ export default function Instructions() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     return (
         <div>
             <SideBar />
