@@ -42,7 +42,6 @@ function Historybar(props) {
     }
 
     const Panel = (p) => {
-        console.log(p);
         return (<div hidden={p.value !== p.index}>
             <Paper id='p' style={{maxHeight: '400px', display: 'flex', flexDirection: 'column-reverse', overflowY: 'auto'}}>{p.children}</Paper>
         </div>);
