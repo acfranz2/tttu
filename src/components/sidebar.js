@@ -106,12 +106,12 @@ export default function SideBar(type) {
         {
             text: 'Settings',
             icon: <SettingsIcon></SettingsIcon>,
-            onClick: () => history.push('/settings')
+            onClick: () => history.push('/game_settings')
         },
         {
             text: 'Help',
             icon: <HelpIcon></HelpIcon>,
-            onClick: () => history.push('/help')
+            onClick: () => history.push('/instructions')
         }
     ];
 
