@@ -12,26 +12,33 @@ class GameStage extends React.Component {
     super(props);
     this.state = {
         moveList: [],
-        type: null
+        currentMove: 0
     };    
   }
 
-  insertMove = (lastMove) => {
+  insertMove = (lastMove, move) => {
     let newList = this.state.moveList;
     newList.push(lastMove);
     this.setState({
-      moveList: newList
+      moveList: newList,
+      currentMove: move
+    });
+  }
+
+  changeMove = (index) => {
+    this.setState({
+      currentMove: index
     });
   }
 
   getGame() {
     let type = this.props.location.state.type;
     if(type === 'Ultra')
-      return <Game getLastMove={this.insertMove} />;
+      return <Game getLastMove={this.insertMove} currentMove={this.state.currentMove}/>;
     else if(type === 'Ultimate')
-      return <L2Game getLastMove={this.insertMove} />;
+      return <L2Game getLastMove={this.insertMove} currentMove={this.state.currentMove}/>;
     else 
-      return <L1Game getLastMove={this.insertMove} />;
+      return <L1Game getLastMove={this.insertMove} currentMove={this.state.currentMove}/>;
   }
 
   render() {
@@ -43,7 +50,7 @@ class GameStage extends React.Component {
             {this.getGame()}
           </Grid>
           <Grid item>
-            <Historybar className="historybar" display="inline-block" board_hist={this.state.moveList}  />
+            <Historybar className="historybar" display="inline-block" board_hist={this.state.moveList} changeMove={this.changeMove} />
           </Grid>
         </Grid>
       </div>

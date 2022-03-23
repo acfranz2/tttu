@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import Box from '@material-ui/core/Box'
 import { sizing } from '@material-ui/system';
@@ -17,33 +17,63 @@ import { Typography } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+
+function parseMove(move) {
+    let coords = move.split(' ');
+    let val = "";
+
+    if (coords.length === 1) {
+        val = "(" + (parseInt(coords[0]) + 1) + ")";
+    }
+    else if (coords.length === 2) {
+        val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ")";
+    }
+    else {
+        val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ", " + (parseInt(coords[2]) + 1) + ")";
+    }
+
+    return val;
+}
 
 function Historybar(props) {
 
-    const _renderBoards = () => {
-        return props.board_hist.map(element => {
-            let coords = element.split(' ');
-            let val = "";
-
-            if(coords.length === 1) {
-                val = "(" + (parseInt(coords[0]) + 1) + ")";
+    const _renderMoves = () => {
+        // let grid = document.getElementById('moveList');
+        // let moveList = props.board_hist;
+        // let moveCount = 1;
+        // for(let i = 0; i < moveList.length; i++) {
+        //     if(i % 2 === 0) {
+        //         // grid.appendChild(<Typography style={{width: '20px'}}>{moveCount}</Typography>);
+        //     }
+        //     let move = parseMove(moveList[i]);
+        //     grid.appendChild(
+        //         (<Button key={moveList[i]} style={{width: '150px', justifyContent: 'left'}}>
+        //             {move}
+        //         </Button>)
+        //     );
+        // }
+        return props.board_hist.map((element, index) => {
+            if(element === '-1') {
+                return (
+                    <p style={{width: '21px', display: 'flex', justifyContent: 'center'}}>
+                        {((index / 3) + 1) + '.'}
+                    </p>
+                );
             }
-            else if(coords.length === 2) {
-                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ")";
-            }
-            else {
-                val = "(" + (parseInt(coords[0]) + 1) + ", " + (parseInt(coords[1]) + 1) + ", " + (parseInt(coords[2]) + 1) + ")";
-            }
-            return (<ListItem key={element}>
-                <ListItemText primary={val}>
-                </ListItemText>
-            </ListItem >)
-        })
+            let val = parseMove(element);
+            let moveIndex = index - Math.floor(index / 3) - 1;
+            return (
+                <Button key={element} style={{width: '139px', justifyContent: 'left'}} onClick={() => {props.changeMove(moveIndex + 1)}}>
+                    {val}
+                </Button>
+            );
+       })
     }
 
     const Panel = (p) => {
         return (<div hidden={p.value !== p.index}>
-            <Paper id='p' style={{maxHeight: '400px', display: 'flex', flexDirection: 'column-reverse', overflowY: 'auto'}}>{p.children}</Paper>
+            <Paper id='p' style={{ maxHeight: '400px', maxWidth: '320px', display: 'flex', flexDirection: 'column-reverse', overflowY: 'scroll' }}>{p.children}</Paper>
         </div>);
     };
 
@@ -56,7 +86,7 @@ function Historybar(props) {
 
     return (
         <div>
-            <Paper style={{ maxHeight: "50vh"}}>
+            <Paper style={{ maxHeight: "50vh" }}>
                 <Tabs
                     value={index}
                     indicatorColor="primary"
@@ -67,9 +97,9 @@ function Historybar(props) {
                     <Tab label="Players" />
                 </Tabs>
                 <Panel value={index} index={0}>
-                    <List>
-                        {_renderBoards()}
-                    </List>
+                    <Grid container columns={2} id='moveList'>
+                        {_renderMoves()}
+                    </Grid>
                 </Panel>
                 <Panel value={index} index={1}>
                     <Card style={{ backgroundColor: color_1 }}>

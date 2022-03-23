@@ -5,39 +5,52 @@ class L1Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: Array(9).fill(null),
-      player: true,
-      winner: null,
-      lastPlayed: -1,
-      curr: -1
+      history: [{
+        score: Array(9).fill(null),
+        winner: null,
+        player: true,
+        lastPlayed: -1
+      }],
+      curr: -1,
+      move: 0
     };
   }
 
   handleClick(l1) {
-    if (!this.state.score[l1] && !this.state.winner) {
-      const newScore = this.state.score;
+    let gState = this.state.history[this.state.move];
+    if (!gState.score[l1] && !gState.winner && this.state.move === this.props.currentMove) {
+      const newScore = JSON.parse(JSON.stringify(gState.score));;
       let newWinner = this.state.winner;
 
-      newScore[l1] = this.state.player ? "X" : "O";
+      newScore[l1] = gState.player ? "X" : "O";
 
-      newWinner = checkScore(newScore)
+      newWinner = checkScore(newScore);
 
+      if(this.state.move % 2 === 0) {
+        this.props.getLastMove('-1', this.state.move + 1);
+      }
       let str = l1 + "";
-      this.props.getLastMove(str);
+      this.props.getLastMove(str, this.state.move + 1);
 
-      this.setState({
+      let newState = {
         score: newScore,
-        player: !this.state.player,
+        player: !gState.player,
         winner: newWinner,
-        lastPlayed: l1,
-        curr: -1
+        lastPlayed: l1
+      }
+      this.setState({
+        history: this.state.history.concat([
+          newState
+        ]),
+        curr: -1,
+        move: this.state.move + 1
       });
     }
   }
 
   handleHover(l1) {
-    const newNPlayable = Array(9).fill(null);
-    if (!this.state.score[l1] && !this.state.winner) {
+    let gState = this.state.history[this.state.move];
+    if (!gState.score[l1] && !gState.winner && this.state.move === this.props.currentMove) {
       this.setState({
         curr: l1
       });
@@ -50,14 +63,15 @@ class L1Game extends React.Component {
   }
 
   render() {
+    let gState = this.state.history[this.props.currentMove];
     return (
       <div className="l1game">
         <table className="l1table">
-          <L1Board scoreL1={this.state.score}
+          <L1Board scoreL1={gState.score}
             onClick={(l1) => this.handleClick(l1)}
             onMouseEnter={(l1) => this.handleHover(l1)}
-            player={this.state.player}
-            lastPlayedl1={this.state.lastPlayed}
+            player={gState.player}
+            lastPlayedl1={gState.lastPlayed}
             currl1={this.state.curr}
             size={'l1'} />
         </table>
