@@ -1,5 +1,12 @@
 import React from 'react'
 import L1Board from '../boards/l1Board'
+import database from '../firebase';
+
+const Push = () => {
+  database.ref("user").set({
+    score : 'hello world'
+  }).catch(alert);
+}
 
 class L1Game extends React.Component {
   constructor(props) {
@@ -19,6 +26,7 @@ class L1Game extends React.Component {
       let newWinner = this.state.winner;
 
       newScore[l1] = this.state.player ? "X" : "O";
+      Push;
 
       newWinner = checkScore(newScore)
 
