@@ -64,8 +64,18 @@ class L1Game extends React.Component {
 
   render() {
     let gState = this.state.history[this.props.currentMove];
+
+    if(this.state.move !== this.props.currentMove) {
+      this.state.curr = -1;
+    }
+
+    let className = 'l1game';
+    if(!this.props.practice && this.state.move !== this.props.currentMove) {
+      className += ' faded';
+    }
+
     return (
-      <div className="l1game">
+      <div className={className}>
         <table className="l1table">
           <L1Board scoreL1={gState.score}
             onClick={(l1) => this.handleClick(l1)}

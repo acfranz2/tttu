@@ -203,8 +203,13 @@ class Game extends React.Component {
       }
     }
 
+    let className = 'game';
+    if(!this.props.practice && this.state.move !== this.props.currentMove) {
+      className += ' faded';
+    }
+
     return (
-      <div className="game">
+      <div className={className}>
         <table className="l3table">
           <L3Board scoreL1={gState.scoreL1} scoreL2={gState.scoreL2} scoreL3={gState.scoreL3}
             onClick={(l1, l2, l3) => this.handleClick(l1, l2, l3)}
@@ -212,7 +217,7 @@ class Game extends React.Component {
             playablel2={gState.playablel2} nplayable={this.state.nplayable} player={gState.player}
             lastPlayedl3={gState.lastPlayedl3} lastPlayedl2={gState.lastPlayedl2} lastPlayedl1={gState.lastPlayedl1}
             currl1={this.state.currl1} currl2={this.state.currl2} currl3={this.state.currl3}
-            size={'l3'} />
+            size={'l3'} histMode={this.props.currentMove !== this.state.move} />
         </table>
         {this.renderReset()}
       </div>

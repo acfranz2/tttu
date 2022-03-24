@@ -3,6 +3,10 @@
   display: inline-block;
 }
 
+.faded {
+  opacity: .7;
+}
+
 .historybar {
   display: flex;
   float: right;
