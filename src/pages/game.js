@@ -33,9 +33,11 @@ class Game extends React.Component {
   }
 
   handleClick(l1, l2, l3) {
+    
+    
     let gState = this.state.history[this.state.move];
     if (gState.playablel2[l3][l2] && !gState.scoreL1[l3][l2][l1] && !gState.winner) {
-      if(!this.props.practice && this.state.move !== this.props.currentMove) {
+      if (!this.props.practice && this.state.move !== this.props.currentMove) {
         return;
       }
       const newScoreL1 = JSON.parse(JSON.stringify(gState.scoreL1));
@@ -73,7 +75,7 @@ class Game extends React.Component {
         }
       }
 
-      if(this.state.move % 2 === 0) {
+      if (this.state.move % 2 === 0) {
         this.props.getLastMove('-1', this.state.move + 1);
       }
       let str = l3 + " " + l2 + " " + l1;
@@ -90,6 +92,16 @@ class Game extends React.Component {
         lastPlayedl1: l1,
         winner: newWinner
       }
+
+      // newGameRef.set(
+      //   { lastPlayedl3: l3,
+      //     lastPlayedl2: l2,
+      //     lastPlayedl1: l1,
+      //     player: !gState.player,
+      //     scorel1: JSON.stringify(gState.scoreL1)}
+      // );
+
+  
 
       this.setState({
         history: this.state.history.concat([
@@ -108,13 +120,13 @@ class Game extends React.Component {
     let gState = this.state.history[this.state.move];
     const newNPlayable = Array(9).fill(null).map(() => Array(9).fill(null));
     if (gState.playablel2[l3][l2] && !gState.scoreL1[l3][l2][l1] && !gState.winner) {
-      if(!this.props.practice && this.state.move !== this.props.currentMove) {
+      if (!this.props.practice && this.state.move !== this.props.currentMove) {
         return;
       }
       const scoreL1 = JSON.parse(JSON.stringify(gState.scoreL1));
       const scoreL2 = JSON.parse(JSON.stringify(gState.scoreL2));
       const scoreL3 = JSON.parse(JSON.stringify(gState.scoreL3));
-      
+
       scoreL1[l3][l2][l1] = gState.player ? "X" : "O";
       scoreL2[l3][l2] = checkScore(scoreL1[l3][l2]);
       scoreL3[l3] = checkScore(scoreL2[l3]);
@@ -182,20 +194,20 @@ class Game extends React.Component {
   }
 
   renderReset() {
-    if(this.props.practice) {
-      return <ResetButton reset={() => {this.reset()}}></ResetButton>;
+    if (this.props.practice) {
+      return <ResetButton reset={() => { this.reset() }}></ResetButton>;
     }
   }
 
   render() {
     let gState = null;
-    if(this.props.practice) {
+    if (this.props.practice) {
       gState = this.state.history[this.state.move];
     }
     else {
       gState = this.state.history[this.props.currentMove];
 
-      if(this.props.currentMove !== this.state.move) {
+      if (this.props.currentMove !== this.state.move) {
         this.state.nplayable = Array(9).fill(null).map(() => Array(9).fill(null));
         this.state.currl1 = -1;
         this.state.currl2 = -1;

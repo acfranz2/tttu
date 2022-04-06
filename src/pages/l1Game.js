@@ -1,6 +1,7 @@
 import React from 'react'
 import L1Board from '../boards/l1Board'
 
+
 class L1Game extends React.Component {
   constructor(props) {
     super(props);
