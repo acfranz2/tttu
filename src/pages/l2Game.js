@@ -154,8 +154,13 @@ class L2Game extends React.Component {
       }
     }
 
+    let className = 'l2game';
+    if(!this.props.practice && this.state.move !== this.props.currentMove) {
+      className += ' faded';
+    }
+
     return (
-      <div className="l2game">
+      <div className={className}>
         <table className="l2table">
           <L2Board scoreL1={gState.scoreL1} scoreL2={gState.scoreL2}
             onClick={(l1, l2) => this.handleClick(l1, l2)}

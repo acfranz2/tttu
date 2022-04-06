@@ -1,0 +1,49 @@
+[debug] [2022-03-24T03:16:28.001Z] ----------------------------------------------------------------------
+[debug] [2022-03-24T03:16:28.004Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\acfra\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start
+[debug] [2022-03-24T03:16:28.005Z] CLI Version:   10.4.0
+[debug] [2022-03-24T03:16:28.005Z] Platform:      win32
+[debug] [2022-03-24T03:16:28.005Z] Node Version:  v16.1.0
+[debug] [2022-03-24T03:16:28.005Z] Time:          Wed Mar 23 2022 22:16:28 GMT-0500 (Central Daylight Time)
+[debug] [2022-03-24T03:16:28.005Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-24T03:16:28.009Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-03-24T03:16:28.114Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-24T03:16:28.114Z] > authorizing via signed-in user (tictactoeultra@gmail.com)
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[debug] [2022-03-24T03:16:28.137Z] [hub] writing locator at C:\Users\acfra\AppData\Local\Temp\hub-tictactoeultra-2c96c.json
+[debug] [2022-03-24T03:16:28.157Z] > refreshing access token with scopes: []
+[debug] [2022-03-24T03:16:28.158Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-03-24T03:16:28.227Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-03-24T03:16:28.227Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2022-03-24T03:16:28.270Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Thu, 24 Mar 2022 03:16:28 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-03-24T03:16:28.277Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/tictactoeultra-2c96c/sites 
+[debug] [2022-03-24T03:16:28.554Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/tictactoeultra-2c96c/sites 200
+[debug] [2022-03-24T03:16:28.554Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/tictactoeultra-2c96c/sites {"sites":[{"name":"projects/673130755587/sites/tictactoeultra-2c96c","defaultUrl":"https://tictactoeultra-2c96c.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2022-03-24T03:16:28.554Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/tictactoeultra-2c96c/webApps/-/config [none]
+[debug] [2022-03-24T03:16:29.083Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/tictactoeultra-2c96c/webApps/-/config 200
+[debug] [2022-03-24T03:16:29.083Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/tictactoeultra-2c96c/webApps/-/config {"projectId":"tictactoeultra-2c96c","appId":"1:673130755587:web:1b077ee7e36421dde10036","databaseURL":"https://tictactoeultra-2c96c-default-rtdb.firebaseio.com","storageBucket":"tictactoeultra-2c96c.appspot.com","apiKey":"AIzaSyA0qAuhdPWU4BPIouERv1ZayCSx2oaKuHU","authDomain":"tictactoeultra-2c96c.firebaseapp.com","messagingSenderId":"673130755587","measurementId":"G-YHR3FLFSRJ"}
+[info] i  hosting: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[warn] !  emulators: The Emulator UI requires a project ID to start. Configure your default project with 'firebase use' or pass the --project flag. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI requires a project ID to start. Configure your default project with 'firebase use' or pass the --project flag."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┐
+│ Emulator │ Host:Port      │
+├──────────┼────────────────┤
+│ Hosting  │ localhost:5000 │
+└──────────┴────────────────┘
+  Emulator Hub running at localhost:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] "GET / HTTP/1.1" 200 762 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] \"GET / HTTP/1.1\" 200 762 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] "GET /static/css/main.71758b5d.css HTTP/1.1" 200 6529 "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] \"GET /static/css/main.71758b5d.css HTTP/1.1\" 200 6529 \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] "GET /static/js/main.6f3cfed8.js HTTP/1.1" 200 676008 "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] \"GET /static/js/main.6f3cfed8.js HTTP/1.1\" 200 676008 \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] "GET /favicon.ico HTTP/1.1" 200 3870 "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] \"GET /favicon.ico HTTP/1.1\" 200 3870 \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] "GET /manifest.json HTTP/1.1" 200 517 "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] \"GET /manifest.json HTTP/1.1\" 200 517 \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] "GET /logo192.png HTTP/1.1" 200 5347 "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [24/Mar/2022:03:16:46 +0000] \"GET /logo192.png HTTP/1.1\" 200 5347 \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36\""}}
