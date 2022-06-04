@@ -10,7 +10,9 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-
+import TextField from '@material-ui/core/TextField'
+import db from '../firebase.js';
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 class Game_Settings extends React.Component {
 
@@ -19,10 +21,12 @@ class Game_Settings extends React.Component {
         this.state = {
             btnDisabled: false,
             playDisabled: true,
+            sbmtDisabled: true,
             type: null,
             player: null,
             mode: null,
-            pathname: '/game_stage/'
+            pathname: '/game_stage/',
+            code: 0
         };
 
     }
@@ -75,6 +79,42 @@ class Game_Settings extends React.Component {
 
         this.forceUpdate();
     }
+
+    handleTextFieldChange = (event) => {
+        if (event.target.value != "") {
+            this.state.sbmtDisabled = false;
+        }
+        else {
+            this.state.sbmtDisabled = true;
+        }
+        this.state.code = event.target.value;
+        console.log(this.state.code);
+        this.forceUpdate();
+    }
+
+    handleSubmit = (event) => {
+        getDoc(doc(db, "games", this.state.code)).then(docSnap => {
+            if (docSnap.exists()) {
+                const gameDoc = doc(db, 'games', this.state.code);
+                updateDoc(gameDoc, {
+                    players_online: docSnap.data().players_online + 1
+                });
+                this.props.history.push({
+                    pathname: '/game_stage/:' + this.state.code, state: {
+                        type: docSnap.data().type_of_game,
+                        player: 2,
+                        mode: docSnap.data().game_mode,
+                        gamekey: this.state.code,
+                        players_online: docSnap.data().players_online + 1,
+                        myturn : false
+                    }
+                })
+            } else {
+                console.log("No such document!");
+            }
+        })
+    }
+
     render() {
         return (
             <Container>
@@ -149,10 +189,15 @@ class Game_Settings extends React.Component {
                             </Grid>
                             <Grid item>
                                 <Link
-                                    to={this.state.playDisabled ? '#' : { pathname: this.state.pathname, state: { 
-                                        type: this.state.type,
-                                        player: this.state.player,
-                                        mode: this.state.mode } }}
+                                    to={this.state.playDisabled ? '#' : {
+                                        pathname: this.state.pathname, state: {
+                                            type: this.state.type,
+                                            player: this.state.player,
+                                            mode: this.state.mode,
+                                            gamekey: "",
+                                            players_online: 0
+                                        }
+                                    }}
                                     style={{ textDecoration: 'none' }} disabled={this.state.playDisabled}>
                                     <Button
                                         endIcon={<SportsEsportsIcon />}
@@ -161,6 +206,19 @@ class Game_Settings extends React.Component {
                                         Play
                                     </Button>
                                 </Link>
+                            </Grid>
+                        </Grid>
+                        <header className='heading'>
+                            <Typography variant="h3">
+                                Friend already created a game? Enter Game Code:
+                            </Typography>
+                        </header>
+                        <Grid container direction={'column'} spacing={1} justifyContent="center">
+                            <Grid item>
+                                <TextField value={this.state.code} id="outlined-basic" label="gamecode" variant="outlined" justifyContent="center" onChange={this.handleTextFieldChange} />
+                            </Grid>
+                            <Grid item>
+                                <Button variant="contained" disabled={this.state.sbmtDisabled} onClick={this.handleSubmit}>Submit</Button>
                             </Grid>
                         </Grid>
                     </Box>

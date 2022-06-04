@@ -28,13 +28,12 @@ class Game extends React.Component {
       currl2: -1,
       currl3: -1,
       nplayable: Array(9).fill(null).map(() => Array(9).fill(null)),
-      move: 0
+      move: 0,
+      isOnline: props.gamekey == ""
     };
   }
 
-  handleClick(l1, l2, l3) {
-    
-    
+  handleClick(l1, l2, l3) {    
     let gState = this.state.history[this.state.move];
     if (gState.playablel2[l3][l2] && !gState.scoreL1[l3][l2][l1] && !gState.winner) {
       if (!this.props.practice && this.state.move !== this.props.currentMove) {

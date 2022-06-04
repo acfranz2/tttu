@@ -8,16 +8,17 @@ import Grid from '@material-ui/core/Grid';
 import { SystemUpdate } from '@material-ui/icons';
 
 class GameStage extends React.Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
-        moveList: [],
-        currentMove: 0
-    };    
+      moveList: [],
+      currentMove: 0
+    };
   }
 
   insertMove = (lastMove, move) => {
+    console.log("GET LAST MOVE CALLED");
     let newList = this.state.moveList;
     newList.push(lastMove);
     this.setState({
@@ -32,14 +33,18 @@ class GameStage extends React.Component {
     });
   }
 
+
+
   getGame() {
     let type = this.props.location.state.type;
-    if(type === 'Ultra')
-      return <Game getLastMove={this.insertMove} currentMove={this.state.currentMove}/>;
-    else if(type === 'Ultimate')
-      return <L2Game getLastMove={this.insertMove} currentMove={this.state.currentMove}/>;
-    else 
-      return <L1Game getLastMove={this.insertMove} currentMove={this.state.currentMove}/>;
+    if (type === 'Ultra')
+      return <Game gamekey={this.props.location.state.gamekey} getLastMove={this.insertMove} currentMove={this.state.currentMove} players_online={this.props.location.state.players_online}
+        player={this.props.location.state.player} myturn={this.props.location.state.myturn} />;
+    else if (type === 'Ultimate')
+      return <L2Game gamekey={this.props.location.state.gamekey} getLastMove={this.insertMove} currentMove={this.state.currentMove} players_online={this.props.location.state.players_online} />;
+    else
+      return <L1Game gamekey={this.props.location.state.gamekey} getLastMove={this.insertMove} currentMove={this.state.currentMove} players_online={this.props.location.state.players_online}
+        player={this.props.location.state.player} myturn={this.props.location.state.myturn} />;
   }
 
   render() {
