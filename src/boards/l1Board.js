@@ -7,24 +7,30 @@ class L1Board extends React.Component {
     let cellData = this.props.scoreL1[l1];
 
     if (this.props.currl1 === l1) {
-      cellData = this.props.player ? 'X' : 'O';
+      cellData = this.props.player == 1 ? 'X' : 'O';
     }
 
     // check to see if cell is in next playable area
     // check to see if cell was just played
     if (this.props.lastPlayedl1 === l1) {
-      if (this.props.player) {
-        cellType = "lastPlayedCell1";
+      if (this.props.player == 1) {
+        if (this.props.opponentLastPlayed) {
+          cellType = "lastPlayedCell2";
+        }
+        else { cellType = "lastPlayedCell1"; }
       }
       else {
-        cellType = "lastPlayedCell2";
+        if (this.props.opponentLastPlayed) {
+          cellType = "lastPlayedCell1";
+        }
+        else { cellType = "lastPlayedCell2"; }
       }
     }
     else if (this.props.nplayable) {
       cellType = "nplayable";
     }
     else if (this.props.playable) {
-      if (this.props.player) {
+      if (this.props.player == 1) {
         cellType = "playableCell1";
       }
       else {
@@ -32,10 +38,10 @@ class L1Board extends React.Component {
       }
     }
 
-    if(this.props.size === 'l3') {
+    if (this.props.size === 'l3') {
       cellType += " l3";
     }
-    else if(this.props.size === 'l2') {
+    else if (this.props.size === 'l2') {
       cellType += " l2";
     }
     else {
@@ -46,17 +52,17 @@ class L1Board extends React.Component {
       cellType += " hovered"
     }
 
-    let size = this.props.size === 'l1' ? '-l1' : 
-               (this.props.size === 'l1') ? '-l2' : '';
-    let marg = this.props.size === 'l1' ? '24px' : 
-               (this.props.size === 'l2') ? '8px' : '1px';
+    let size = this.props.size === 'l1' ? '-l1' :
+      (this.props.size === 'l1') ? '-l2' : '';
+    let marg = this.props.size === 'l1' ? '24px' :
+      (this.props.size === 'l2') ? '8px' : '1px';
     return (
       <td id={"cellL1" + l1 + size}>
         <button
           className={cellType}
           onClick={() => this.props.onClick(l1)}
           onMouseEnter={() => this.props.onMouseEnter(l1)}>
-          <p style={{margin: marg}}>{cellData}</p>
+          <p style={{ margin: marg }}>{cellData}</p>
         </button>
       </td>
     );

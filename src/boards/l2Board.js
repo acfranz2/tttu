@@ -28,13 +28,13 @@ class L2Board extends React.Component {
             lastPlayedl1={lp1}
             currl1={cp1}
             size={this.props.size}
+            opponentLastPlayed={this.props.opponentLastPlayed}
           />
         </table>
       );
     else {
-      console.log("l2Score l2Score-"+this.props.size);
       return (
-        <div className={"l2Score l2Score-"+this.props.size}>
+        <div className={"l2Score l2Score-" + this.props.size}>
           {this.props.scoreL2[l2]}
         </div>
       );

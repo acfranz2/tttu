@@ -7,15 +7,13 @@ class L2Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        history: [{
-        scoreL1: Array(9).fill(null).map(() => Array(9).fill(null)),
-        scoreL2: Array(9).fill(null),
-        player: true,
-        winner: null,
-        playablel1: Array(9).fill(1),
-        lastPlayedl2: -1,
-        lastPlayedl1: -1
-      }],
+      scoreL1: Array(9).fill(null).map(() => Array(9).fill(null)),
+      scoreL2: Array(9).fill(null),
+      player: true,
+      winner: null,
+      playablel1: Array(9).fill(1),
+      lastPlayedl2: -1,
+      lastPlayedl1: -1,
       currl1: -1,
       currl2: -1,
       nplayable: Array(9).fill(null),
@@ -24,17 +22,14 @@ class L2Game extends React.Component {
   }
 
   handleClick(l1, l2) {
-    let gState = this.state.history[this.state.move];
-    if (gState.playablel1[l2] && !gState.scoreL1[l2][l1] && !gState.winner) {
-      if(!this.props.practice && this.state.move !== this.props.currentMove) {
-        return;
-      }
-      const newScoreL1 = JSON.parse(JSON.stringify(gState.scoreL1));
-      const newScoreL2 = JSON.parse(JSON.stringify(gState.scoreL2));
+    if (this.state.playablel1[l2] && !this.state.scoreL1[l2][l1] && !this.state.winner) {
+
+      const newScoreL1 = JSON.parse(JSON.stringify(this.state.scoreL1));
+      const newScoreL2 = JSON.parse(JSON.stringify(this.state.scoreL2));
       const newPlayableL1 = Array(9).fill(null);
       let newWinner = null;
 
-      newScoreL1[l2][l1] = gState.player ? "X" : "O";
+      newScoreL1[l2][l1] = this.state.player ? "X" : "O";
 
       newScoreL2[l2] = checkScore(newScoreL1[l2]);
       newWinner = checkScore(newScoreL2)
@@ -50,25 +45,14 @@ class L2Game extends React.Component {
         newPlayableL1[l1] = 1;
       }
 
-      if(this.state.move % 2 === 0) {
-        this.props.getLastMove('-1', this.state.move + 1);
-      }
-      let str = l2 + " " + l1;
-      this.props.getLastMove(str, this.state.move + 1);
-
-      let newState = {
+      this.setState({
         scoreL1: newScoreL1,
         scoreL2: newScoreL2,
-        player: !gState.player,
-        winner: newWinner, 
+        player: !this.state.player,
+        winner: newWinner,
         playablel1: newPlayableL1,
         lastPlayedl2: l2,
         lastPlayedl1: l1,
-      }
-      this.setState({
-        history: this.state.history.concat([
-          newState
-        ]),
         currl2: -1,
         currl1: -1,
         nplayable: Array(9).fill(null),
@@ -78,15 +62,13 @@ class L2Game extends React.Component {
   }
 
   handleHover(l1, l2) {
-    let gState = this.state.history[this.state.move];
+    let gState = this.state;
     const newNPlayable = Array(9).fill(null);
-    if (gState.playablel1[l2] && !gState.scoreL1[l2][l1] && !gState.winner) {
-      if(!this.props.practice && this.state.move !== this.props.currentMove) {
-        return;
-      }
-      const scoreL1 = JSON.parse(JSON.stringify(gState.scoreL1));
-      const scoreL2 = JSON.parse(JSON.stringify(gState.scoreL2));
-      scoreL1[l2][l1] = gState.player ? "X" : "O";
+  
+    if (this.state.playablel1[l2] && !this.state.scoreL1[l2][l1] && !this.state.winner) {
+      const scoreL1 = JSON.parse(JSON.stringify(this.state.scoreL1));
+      const scoreL2 = JSON.parse(JSON.stringify(this.state.scoreL2));
+      scoreL1[l2][l1] = this.state.player ? "X" : "O";
       scoreL2[l2] = checkScore(scoreL1[l2]);
 
       if (scoreL2[l1]) {
@@ -117,15 +99,13 @@ class L2Game extends React.Component {
 
   reset() {
     this.setState({
-      history: [{
-        scoreL1: Array(9).fill(null).map(() => Array(9).fill(null)),
-        scoreL2: Array(9).fill(null),
-        player: true,
-        winner: null,
-        playablel1: Array(9).fill(1),
-        lastPlayedl2: -1,
-        lastPlayedl1: -1
-      }],
+      scoreL1: Array(9).fill(null).map(() => Array(9).fill(null)),
+      scoreL2: Array(9).fill(null),
+      player: true,
+      winner: null,
+      playablel1: Array(9).fill(1),
+      lastPlayedl2: -1,
+      lastPlayedl1: -1,
       currl1: -1,
       currl2: -1,
       nplayable: Array(9).fill(null),
@@ -134,41 +114,28 @@ class L2Game extends React.Component {
   }
 
   renderReset() {
-    if(this.props.practice) {
-      return <ResetButton reset={() => {this.reset()}}></ResetButton>;
+    if (this.props.practice) {
+      return <ResetButton reset={() => { this.reset() }}></ResetButton>;
     }
   }
 
   render() {
-    let gState = null;
-    if(this.props.practice) {
-      gState = this.state.history[this.state.move];
-    }
-    else {
-      gState = this.state.history[this.props.currentMove];
-
-      if(this.props.currentMove !== this.state.move) {
-        this.state.nplayable = Array(9).fill(null);
-        this.state.currl1 = -1;
-        this.state.currl2 = -1;
-      }
-    }
-
+    
     let className = 'l2game';
-    if(!this.props.practice && this.state.move !== this.props.currentMove) {
-      className += ' faded';
-    }
+    // if (!this.props.practice) {
+    //   className += ' faded';
+    // }
 
     return (
       <div className={className}>
         <table className="l2table">
-          <L2Board scoreL1={gState.scoreL1} scoreL2={gState.scoreL2}
+          <L2Board scoreL1={this.state.scoreL1} scoreL2={this.state.scoreL2}
             onClick={(l1, l2) => this.handleClick(l1, l2)}
             onMouseEnter={(l1, l2) => this.handleHover(l1, l2)}
-            playablel2={gState.playablel1} player={gState.player}
+            playablel2={this.state.playablel1} player={this.state.player}
             nplayable={this.state.nplayable}
-            lastPlayedl2={gState.lastPlayedl2} lastPlayedl1={gState.lastPlayedl1}
-            currl1={this.state.currl1} currl2={this.state.currl2} 
+            lastPlayedl2={this.state.lastPlayedl2} lastPlayedl1={this.state.lastPlayedl1}
+            currl1={this.state.currl1} currl2={this.state.currl2}
             size={this.props.practice ? 'l3' : 'l2'} />
         </table>
         {this.renderReset()}

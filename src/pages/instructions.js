@@ -9,7 +9,7 @@ import L2BoardInst from '../boards/l2BoardInst';
 import L3BoardInst from '../boards/l3BoardInst';
 import '../boards/board.css';
 import L2Game from './l2Game';
-import Game from './game';
+import L3Game from './l3Game';
 
 // let l2Move = 0;
 // let l3Move = 0;
@@ -192,7 +192,7 @@ export default function Instructions() {
                             Both events occur in the same way for the rest of the game.
                         </Typography>
                         <div style={{display: 'flex', justifyContent: 'center'}}>
-                            <Game practice={true} getLastMove={(str) => {}}/>
+                            <L3Game practice={true} getLastMove={(str) => {}}/>
                         </div>
                     </Container>
                 </TabPanel>
