@@ -45,19 +45,8 @@ class L2GameOnline extends React.Component {
                 console.log("Turn:" + change.doc.get("turn"));
 
                 if (this.state.player == change.doc.get("turn")) {
-                    const docLastMove = change.doc.get("lastMove");
-                    //console.log("DATABSE CHANGED");
                     this.state.myturn = change.doc.get("turn") == this.state.player;
-                    let l1FromDatabase = 0;
-                    if (docLastMove == 8) {
-                        l1FromDatabase = 8;
-                    }
-                    else {
-                        l1FromDatabase = docLastMove % 8;
-                    }
-                    const l2FromDatabase = (docLastMove - l1FromDatabase) / 8;
-
-                    this.handleClick(l1FromDatabase, l2FromDatabase, false);
+                    this.handleClick(change.doc.get("lastl1"), change.doc.get("lastl2"), false);
                 }
             }
 
@@ -118,7 +107,8 @@ class L2GameOnline extends React.Component {
                 updateDoc(gameDoc, {
                     [key]: this.state.player == 1 ? "X" : "O",
                     "turn": this.state.player == 1 ? 2 : 1,
-                    "lastMove": key
+                    "lastl2": l2,
+                    "lastl1": l1
                 });
                 this.setState({
                     scoreL1: newScoreL1,

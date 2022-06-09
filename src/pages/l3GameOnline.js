@@ -52,7 +52,7 @@ class L3GameOnline extends React.Component {
                 if (this.state.player == change.doc.get("turn")) {
                     this.state.myturn = change.doc.get("turn") == this.state.player;
 
-                    this.handleClick(change.doc.get("lastl3"), change.doc.get("lastl2"), change.doc.get("lastl1"), false);
+                    this.handleClick(change.doc.get("lastl1"), change.doc.get("lastl2"), change.doc.get("lastl3"), false);
                 }
             }
 
@@ -95,8 +95,8 @@ class L3GameOnline extends React.Component {
             let newWinner = null;
 
 
-            if (myMove) { newScoreL1[l3][l2][l1] = this.state.player ? "X" : "O"; }
-            else { newScoreL1[l3][l2][l1] = this.state.player ? "O" : "X"; }
+            if (myMove) { newScoreL1[l3][l2][l1] = this.state.player == 1? "X" : "O"; }
+            else { newScoreL1[l3][l2][l1] = this.state.player == 1? "O" : "X"; }
 
             newScoreL2[l3][l2] = checkScore(newScoreL1[l3][l2]);
             newScoreL3[l3] = checkScore(newScoreL2[l3]);

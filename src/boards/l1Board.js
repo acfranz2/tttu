@@ -31,10 +31,20 @@ class L1Board extends React.Component {
     }
     else if (this.props.playable) {
       if (this.props.player == 1) {
-        cellType = "playableCell1";
+        if (this.props.opponentLastPlayed) {
+          cellType = "playableCell2";
+        }
+        else {
+          cellType = "playableCell1";
+        }
       }
       else {
-        cellType = "playableCell2";
+        if (this.props.opponentLastPlayed) {
+          cellType = "playableCell1";
+        }
+        else {
+          cellType = "playableCell2";
+        }
       }
     }
 
